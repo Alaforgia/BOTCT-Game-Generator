@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 const Wrapper = styled.main`
   display: flex;
@@ -24,7 +25,24 @@ const Input = styled.input`
 
 const Button = styled.button``;
 
-function NumberRandomizer() {
+const Output = styled.h4``;
+
+function NumberRandomizer(props: any) {
+  const [num, setNum] = useState(0);
+
+  useEffect(() => {
+    return () => {};
+  }, []);
+
+  const randomNumber = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const numberButtonHandler = () => {
+    setNum(randomNumber(1, 10));
+  };
+  // console.log(randomNumber(1, 10));
+
   return (
     <div>
       <Wrapper>
@@ -32,8 +50,16 @@ function NumberRandomizer() {
           <Input type="text"></Input>
           <Input type="text"></Input>
           <Input type="text"></Input>
+          <Input type="text"></Input>
+          <Input type="text"></Input>
+          <Input type="text"></Input>
+          <Input type="text"></Input>
+          <Input type="text"></Input>
+          <Input type="text"></Input>
+          <Input type="text"></Input>
         </Forms>
-        <Button>Create</Button>
+        <Button onClick={() => numberButtonHandler()}>Create</Button>
+        <Output>Number: {num}</Output>
       </Wrapper>
     </div>
   );
