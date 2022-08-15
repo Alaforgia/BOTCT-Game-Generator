@@ -2,7 +2,13 @@
 
 function NumberRandomizer() {
   return (
-    <div>NumberRandomizer</div>
+    <div>
+      <main>
+        <form>
+          <input type="text"></input>
+        </form>
+      </main>
+    </div>
   )
 }
 
