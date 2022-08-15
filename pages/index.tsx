@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import NumberRandomizer from "./NumberRandomizer";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +18,9 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://bloodontheclocktower.com/">Blood On The Clock Tower</a> Companion!
         </h1>
+        <h3>
+          <Link href="/NumberRandomizer">Number Generator</Link>
+        </h3>
       </main>
     </div>
   );
