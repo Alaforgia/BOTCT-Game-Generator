@@ -27,11 +27,14 @@ const Button = styled.button``;
 
 const Output = styled.h4``;
 
-function NumberRandomizer(props: any) {
+type Player = [id: number, name: string];
+
+function NumberRandomizer() {
   const [num, setNum] = useState(0);
+  const [players, setPlayer]: any = useState<Player[]>([]);
 
   useEffect(() => {
-    return () => {};
+    // setPlayer();
   }, []);
 
   const randomNumber = (min: number, max: number) => {
@@ -41,25 +44,78 @@ function NumberRandomizer(props: any) {
   const numberButtonHandler = () => {
     setNum(randomNumber(1, 10));
   };
-  // console.log(randomNumber(1, 10));
+
+  const handlePlayerSubmit = (event: any): void => {
+    event.preventDefault();
+    // setPlayer(event.target.value);
+    // setPlayer((players: any) => [...players]);
+    // const value = event.target.value;
+    // setPlayer({
+    //   ...players,
+    //   [event.target.name]: value,
+    // });
+  };
+
+  const handleChange = (event: any) => {
+    event.preventDefault();
+    const toArray = Object.values(players);
+    const value = event.target.value;
+    setPlayer(toArray);
+    setPlayer(value);
+    toArray.flatMap((name: any): any => {
+      return [players].join("");
+
+      // console.log(key);
+      // console.log(value);
+    });
+    console.log("handle change = ", toArray);
+  };
+  // const toArray = Object.values(players);
+  // console.log("map =", toArray);
+
+  // console.log("what is this = ", typeof players);
 
   return (
     <div>
       <Wrapper>
-        <Forms>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
-          <Input type="text"></Input>
+        {/* {players.map((player: any, index: any): any => {
+          return (
+            <div key={index}>
+              <p>{player.name}</p>
+            </div>
+          );
+        })} */}
+        <Forms onSubmit={handlePlayerSubmit}>
+          {/* <Input type="text" value={players.name} onChange={handleChange}></Input> */}
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          <Input type="text" onChange={handleChange}></Input>
+          {/* <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
+          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
+          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
+          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
+          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
+          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
+          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
+          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
+          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input> */}
         </Forms>
         <Button onClick={() => numberButtonHandler()}>Create</Button>
-        <Output>Number: {num}</Output>
+        <Output>
+          Number: {num} <br></br>
+          Players: {players}
+          {/* {players.map((player: any, index: any): any => {
+            return <div key={player.id}>{players}</div>;
+          })} */}
+        </Output>
       </Wrapper>
     </div>
   );
