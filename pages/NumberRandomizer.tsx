@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
 
 const Wrapper = styled.main`
@@ -18,9 +18,9 @@ const Forms = styled.form`
   padding: 10px;
 `;
 
-const Input = styled.input`
-  margin: 5px;
-  padding: 5px;
+ export const Input = styled.input`
+  margin: ${(props) => props.theme.inputMargin};
+  padding: ${(props) => props.theme.inputPadding};
 `;
 
 const Button = styled.button``;
