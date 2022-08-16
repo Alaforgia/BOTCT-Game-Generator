@@ -27,7 +27,7 @@ const Button = styled.button``;
 
 const Output = styled.h4``;
 
-type Player = [id: number, name: string];
+type Player = [{ id: number; name: string }];
 
 function NumberRandomizer() {
   const [num, setNum] = useState(0);
@@ -46,7 +46,7 @@ function NumberRandomizer() {
   };
 
   const handlePlayerSubmit = (event: any): void => {
-    event.preventDefault();
+    // event.preventDefault();
     // setPlayer(event.target.value);
     // setPlayer((players: any) => [...players]);
     // const value = event.target.value;
@@ -57,18 +57,19 @@ function NumberRandomizer() {
   };
 
   const handleChange = (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     const toArray = Object.values(players);
+    if (toArray === undefined || null) {
+      const values = Object.values(players);
+    } else {
+      console.log(players);
+    }
+    const arrayMap: any = toArray.forEach((element) => console.log(element));
     const value = event.target.value;
-    setPlayer(toArray);
+    setPlayer(arrayMap);
     setPlayer(value);
-    toArray.flatMap((name: any): any => {
-      return [players].join("");
 
-      // console.log(key);
-      // console.log(value);
-    });
-    console.log("handle change = ", toArray);
+    console.log("handle change = ", arrayMap);
   };
   // const toArray = Object.values(players);
   // console.log("map =", toArray);
@@ -113,7 +114,7 @@ function NumberRandomizer() {
           Number: {num} <br></br>
           Players: {players}
           {/* {players.map((player: any, index: any): any => {
-            return <div key={player.id}>{players}</div>;
+            return <div key={player.id}>{players.player}</div>;
           })} */}
         </Output>
       </Wrapper>
