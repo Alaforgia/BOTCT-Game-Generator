@@ -8,4 +8,4 @@
 
 
 ### 9/15/2022
-1.
+1. Build an input that takes in a number and generates inputs(players) based on that number.
