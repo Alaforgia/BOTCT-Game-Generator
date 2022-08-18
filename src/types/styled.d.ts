@@ -17,7 +17,7 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface InputTheme {
-    inputMargin: string;
-    inputPadding: string;
+    inputMargin?: string;
+    inputPadding?: string;
   }
 }

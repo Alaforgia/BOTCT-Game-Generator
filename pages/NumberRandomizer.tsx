@@ -18,7 +18,7 @@ const Forms = styled.form`
   padding: 10px;
 `;
 
- export const Input = styled.input`
+export const Input = styled.input`
   margin: ${(props) => props.theme.inputMargin};
   padding: ${(props) => props.theme.inputPadding};
 `;
