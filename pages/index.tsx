@@ -3,9 +3,36 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import NumberRandomizer from "./NumberRandomizer";
+import { useState } from "react";
 import Link from "next/link";
 
 const Home: NextPage = () => {
+  const [numOfPlayers, setNumOfPlayers] = useState(0);
+  const [players, setPlayers] = useState([]);
+  const player: any = [];
+
+  const onChangeNumberOfPlayers = (e: any): any => {
+    const numOfPlayers = e.target.value;
+
+    setNumOfPlayers(numOfPlayers);
+    if (numOfPlayers > 0) {
+      const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
+      setPlayers(generateInputs);
+    } else {
+      setPlayers([]);
+    }
+  };
+  const addInputs = (): any => {
+    return players.map((person: any): any => (
+      <input
+        key={person}
+        type="text"
+        // value={player}
+        // onChange={onChangeNumberOfPlayers}
+      ></input>
+    ));
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,6 +48,9 @@ const Home: NextPage = () => {
         <h3>
           <Link href="/NumberRandomizer">Number Generator</Link>
         </h3>
+        <input type="text" value={numOfPlayers} onChange={onChangeNumberOfPlayers}></input>
+        <button>Submit</button>
+        <form>{players.length ? <div>{addInputs()}</div> : null}</form>
       </main>
     </div>
   );
