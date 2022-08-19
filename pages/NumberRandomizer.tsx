@@ -28,11 +28,11 @@ const Button = styled.button``;
 
 const Output = styled.h4``;
 
-type Player = [{ id: number; name: string }];
+// type Player = [{ id: number; name: string }];
 
-function NumberRandomizer({ inputs }: any) {
+function NumberRandomizer({ persons }: any) {
   const [num, setNum] = useState(0);
-  const [players, setPlayers]: any = useState<Player[]>([]);
+  const [players, setPlayers]: any = useState([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
 
   useEffect(() => {
@@ -79,25 +79,24 @@ function NumberRandomizer({ inputs }: any) {
   // console.log("what is this = ", typeof players);
   const player: any = [];
 
-  const onClickNumberOfPlayers = (e: any): any => {
-    const numOfPlayers = e.target.value;
+  // const onClickNumberOfPlayers = (e: any): any => {
+  //   const numOfPlayers = e.target.value;
 
-    setNumOfPlayers(numOfPlayers);
-    if (numOfPlayers > 0) {
-      const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
-      setPlayers(generateInputs);
-    } else {
-      setPlayers([]);
-    }
-  };
+  //   setNumOfPlayers(numOfPlayers);
+  //   if (numOfPlayers > 0) {
+  //     const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
+  //     setPlayers(generateInputs);
+  //   } else {
+  //     setPlayers([]);
+  //   }
+  // };
 
-  const addInputs = ({ inputs }: any): any => {
+  const addInputs = (): any => {
     return players.map((persons: any): any => (
       <input
         name="inputs"
         key={persons}
         type="text"
-        value={inputs}
         // onChange={onClickNumberOfPlayers}
       ></input>
     ));
@@ -117,6 +116,7 @@ function NumberRandomizer({ inputs }: any) {
         {/* <Input type="text" onChange={handleChange}></Input> */}
         {/* </Forms> */}
         {/* <input type="text" value={numOfPlayers} onChange={onClickNumberOfPlayers}></input> */}
+          <Forms>{players.length ? <div>{addInputs()}</div> : null}</Forms>
         <Button onClick={() => numberButtonHandler()}>Create</Button>
         <Output>
           Number: {num} <br></br>
@@ -124,7 +124,6 @@ function NumberRandomizer({ inputs }: any) {
           {/* {players.map((player: any, index: any): any => {
             return <div key={player.id}>{players.player}</div>;
           })} */}
-          <form>{players.length ? <div>{addInputs({ inputs })}</div> : null}</form>
         </Output>
       </Wrapper>
     </div>

@@ -5,12 +5,15 @@ import styles from "../styles/Home.module.css";
 import NumberRandomizer from "./NumberRandomizer";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  //
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [players, setPlayers] = useState([]);
   const player: any = [];
-
+  //
   const onClickNumberOfPlayers = (e: any): any => {
     const numOfPlayers = e.target.value;
 
@@ -22,6 +25,7 @@ const Home: NextPage = () => {
       setPlayers([]);
     }
   };
+  //
   const addInputs = (): any => {
     return players.map((persons: any): any => (
       <input
@@ -33,13 +37,20 @@ const Home: NextPage = () => {
       ></input>
     ));
   };
-
+  //
   const handleSubmit = (event: any): void => {
     event.preventDefault();
     // onClickNumberOfPlayers(event);
-    console.log("you clicked Submit", handleSubmit);
+    // addInputs();
+    console.log("you clicked Submit", event);
   };
-  // console.log("handleSubmit = ", handleSubmit);
+  //
+
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    router.push("/NumberRandomizer");
+    onClickNumberOfPlayers(e);
+  };
 
   return (
     <div className={styles.container}>
@@ -54,17 +65,17 @@ const Home: NextPage = () => {
           Welcome to <a href="https://bloodontheclocktower.com/">Blood On The Clock Tower</a> Companion!
         </h1>
 
-        {/* <form onSubmit={handleSubmit}> */}
-        <input type="text" defaultValue={numOfPlayers} onChange={onClickNumberOfPlayers}></input>
-        <Link href="/NumberRandomizer">
-          <input type="submit" onClick={onClickNumberOfPlayers}></input>
-        </Link>
-        {/* <div>
-          {addInputs()}
-        </div> */}
-        {/* </form> */}
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={numOfPlayers} onChange={onClickNumberOfPlayers}></input>
+        </form>
+        {/* <Link href="/NumberRandomizer"> */}
+        <button type="submit" onClick={handleClick}>
+          SUBMIT
+        </button>
+        {/* </Link> */}
+        {/* <h3>{addInputs()}</h3> */}
 
-        {/* <form>{players.length ? <div>{addInputs()}</div> : null}</form> */}
+        <form>{players.length ? <div>{addInputs()}</div> : null}</form>
       </main>
     </div>
   );
