@@ -14,3 +14,6 @@
 1. Build an input that takes in a number and generates inputs(players) based on that number (cont...)
    - Running into state issues and prop drilling. Will try React Hooks useContext or useReducer.card
 2. Use useContext to get the inputs to appear on NumberRandomizer page.
+
+### 8/19/2022
+-[3:37 AM] Difficulties with useContext, I will have to try more after sleep. I think I need to make sure the context consumer is wrapping all of the JSX in PlayerInputGenerator.
