@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   const [players, setPlayers] = useState([]);
   const player: any = [];
 
-  const onChangeNumberOfPlayers = (e: any): any => {
+  const onClickNumberOfPlayers = (e: any): any => {
     const numOfPlayers = e.target.value;
 
     setNumOfPlayers(numOfPlayers);
@@ -23,15 +23,23 @@ const Home: NextPage = () => {
     }
   };
   const addInputs = (): any => {
-    return players.map((person: any): any => (
+    return players.map((persons: any): any => (
       <input
-        key={person}
+        name="inputs"
+        key={persons}
         type="text"
         // value={player}
-        // onChange={onChangeNumberOfPlayers}
+        // onChange={onClickNumberOfPlayers}
       ></input>
     ));
   };
+
+  const handleSubmit = (event: any): void => {
+    event.preventDefault();
+    // onClickNumberOfPlayers(event);
+    console.log("you clicked Submit", handleSubmit);
+  };
+  // console.log("handleSubmit = ", handleSubmit);
 
   return (
     <div className={styles.container}>
@@ -45,12 +53,18 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://bloodontheclocktower.com/">Blood On The Clock Tower</a> Companion!
         </h1>
-        <h3>
-          <Link href="/NumberRandomizer">Number Generator</Link>
-        </h3>
-        <input type="text" value={numOfPlayers} onChange={onChangeNumberOfPlayers}></input>
-        <button>Submit</button>
-        <form>{players.length ? <div>{addInputs()}</div> : null}</form>
+
+        {/* <form onSubmit={handleSubmit}> */}
+        <input type="text" defaultValue={numOfPlayers} onChange={onClickNumberOfPlayers}></input>
+        <Link href="/NumberRandomizer">
+          <input type="submit" onClick={onClickNumberOfPlayers}></input>
+        </Link>
+        {/* <div>
+          {addInputs()}
+        </div> */}
+        {/* </form> */}
+
+        {/* <form>{players.length ? <div>{addInputs()}</div> : null}</form> */}
       </main>
     </div>
   );

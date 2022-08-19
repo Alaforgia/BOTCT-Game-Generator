@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
+import Home from ".";
 
 const Wrapper = styled.main`
   display: flex;
@@ -29,9 +30,10 @@ const Output = styled.h4``;
 
 type Player = [{ id: number; name: string }];
 
-function NumberRandomizer() {
+function NumberRandomizer({ inputs }: any) {
   const [num, setNum] = useState(0);
-  const [players, setPlayer]: any = useState<Player[]>([]);
+  const [players, setPlayers]: any = useState<Player[]>([]);
+  const [numOfPlayers, setNumOfPlayers] = useState(0);
 
   useEffect(() => {
     // setPlayer();
@@ -56,25 +58,50 @@ function NumberRandomizer() {
     // });
   };
 
-  const handleChange = (event: any) => {
-    // event.preventDefault();
-    const toArray = Object.values(players);
-    if (toArray === undefined || null) {
-      const values = Object.values(players);
-    } else {
-      console.log(players);
-    }
-    const arrayMap: any = toArray.forEach((element) => console.log(element));
-    const value = event.target.value;
-    setPlayer(arrayMap);
-    setPlayer(value);
+  // const handleChange = (event: any) => {
+  //   // event.preventDefault();
+  //   const toArray = Object.values(players);
+  //   if (toArray === undefined || null) {
+  //     const values = Object.values(players);
+  //   } else {
+  //     console.log(players);
+  //   }
+  //   const arrayMap: any = toArray.forEach((element) => console.log(element));
+  //   const value = event.target.value;
+  //   setPlayer(arrayMap);
+  //   setPlayer(value);
 
-    console.log("handle change = ", arrayMap);
-  };
+  //   console.log("handle change = ", arrayMap);
+  // };
   // const toArray = Object.values(players);
   // console.log("map =", toArray);
 
   // console.log("what is this = ", typeof players);
+  const player: any = [];
+
+  const onClickNumberOfPlayers = (e: any): any => {
+    const numOfPlayers = e.target.value;
+
+    setNumOfPlayers(numOfPlayers);
+    if (numOfPlayers > 0) {
+      const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
+      setPlayers(generateInputs);
+    } else {
+      setPlayers([]);
+    }
+  };
+
+  const addInputs = ({ inputs }: any): any => {
+    return players.map((persons: any): any => (
+      <input
+        name="inputs"
+        key={persons}
+        type="text"
+        value={inputs}
+        // onChange={onClickNumberOfPlayers}
+      ></input>
+    ));
+  };
 
   return (
     <div>
@@ -86,36 +113,18 @@ function NumberRandomizer() {
             </div>
           );
         })} */}
-        <Forms onSubmit={handlePlayerSubmit}>
-          {/* <Input type="text" value={players.name} onChange={handleChange}></Input> */}
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          <Input type="text" onChange={handleChange}></Input>
-          {/* <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
-          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
-          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
-          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
-          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
-          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
-          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
-          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input>
-          <Input type="text" value={players} onChange={(e: any) => setPlayer(e.target.value)}></Input> */}
-        </Forms>
+        {/* <Forms onSubmit={handlePlayerSubmit}> */}
+        {/* <Input type="text" onChange={handleChange}></Input> */}
+        {/* </Forms> */}
+        {/* <input type="text" value={numOfPlayers} onChange={onClickNumberOfPlayers}></input> */}
         <Button onClick={() => numberButtonHandler()}>Create</Button>
         <Output>
           Number: {num} <br></br>
-          Players: {players}
+          {/* Players: {players} */}
           {/* {players.map((player: any, index: any): any => {
             return <div key={player.id}>{players.player}</div>;
           })} */}
+          <form>{players.length ? <div>{addInputs({ inputs })}</div> : null}</form>
         </Output>
       </Wrapper>
     </div>
