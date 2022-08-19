@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
+import PlayerContext from "../src/components/PlayerInputGenerator";
 import Home from ".";
 
 const Wrapper = styled.main`
@@ -30,7 +31,13 @@ const Output = styled.h4``;
 
 // type Player = [{ id: number; name: string }];
 
+//@ts-ignore
+// const playerContext: any = createContext();
+
 function NumberRandomizer({ persons }: any) {
+  //@ts-ignore
+  const value: any = useContext(PlayerContext);
+
   const [num, setNum] = useState(0);
   const [players, setPlayers]: any = useState([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
@@ -103,30 +110,34 @@ function NumberRandomizer({ persons }: any) {
   };
 
   return (
-    <div>
-      <Wrapper>
-        {/* {players.map((player: any, index: any): any => {
+    <>
+      {value}
+      <div>
+        <Wrapper>
+          {/* {players.map((player: any, index: any): any => {
           return (
             <div key={index}>
               <p>{player.name}</p>
             </div>
           );
         })} */}
-        {/* <Forms onSubmit={handlePlayerSubmit}> */}
-        {/* <Input type="text" onChange={handleChange}></Input> */}
-        {/* </Forms> */}
-        {/* <input type="text" value={numOfPlayers} onChange={onClickNumberOfPlayers}></input> */}
-          <Forms>{players.length ? <div>{addInputs()}</div> : null}</Forms>
-        <Button onClick={() => numberButtonHandler()}>Create</Button>
-        <Output>
-          Number: {num} <br></br>
-          {/* Players: {players} */}
-          {/* {players.map((player: any, index: any): any => {
+          {/* <Forms onSubmit={handlePlayerSubmit}> */}
+          {/* <Input type="text" onChange={handleChange}></Input> */}
+          {/* </Forms> */}
+          {/* <input type="text" value={numOfPlayers} onChange={onClickNumberOfPlayers}></input> */}
+          {/* <Forms>{players.length ? <div>{addInputs()}</div> : null}</Forms> */}
+          {/* <Forms>{value}</Forms> */}
+          <Button onClick={() => numberButtonHandler()}>Create</Button>
+          <Output>
+            Number: {num} <br></br>
+            {/* Players: {players} */}
+            {/* {players.map((player: any, index: any): any => {
             return <div key={player.id}>{players.player}</div>;
           })} */}
-        </Output>
-      </Wrapper>
-    </div>
+          </Output>
+        </Wrapper>
+      </div>
+    </>
   );
 }
 
