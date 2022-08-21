@@ -21,10 +21,10 @@ const Forms = styled.form`
   padding: 10px;
 `;
 
-export const Input = styled.input`
-  margin: ${(props) => props.theme.inputMargin};
-  padding: ${(props) => props.theme.inputPadding};
-`;
+// export const Input = styled.input`
+//   margin: ${(props) => props.theme.inputMargin};
+//   padding: ${(props) => props.theme.inputPadding};
+// `;
 
 const Button = styled.button``;
 
@@ -35,16 +35,17 @@ const Output = styled.h4``;
 //@ts-ignore
 // const playerContext: any = createContext();
 
-function NumberRandomizer({ persons }: any) {
+function NumberRandomizer() {
   //@ts-ignore
   const inputs: any = useContext(PlayerContext);
+  // console.log(PlayerContext);
 
   const [num, setNum] = useState(0);
-  const [newPlayers, setNewPlayers]: any = useState(PlayerContext);
+  // const [newPlayers, setNewPlayers]: any = useState(PlayerContext);
   const [players, setPlayers]: any = useState([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   //@ts-ignore
-  useEffect((): any => {}, []);
+  // useEffect((): any => {}, []);
 
   const randomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -98,20 +99,19 @@ function NumberRandomizer({ persons }: any) {
   //   }
   // };
 
-  const addInputs = (): any => {
-    return players.map((persons: any): any => (
-      <input
-        name="inputs"
-        key={persons}
-        type="text"
-        // onChange={onClickNumberOfPlayers}
-      ></input>
-    ));
-  };
-
+  // const addInputs = (): any => {
+  //   return players.map((persons: any): any => (
+  //     <input
+  //       name="inputs"
+  //       key={persons}
+  //       type="text"
+  //       // onChange={onClickNumberOfPlayers}
+  //     ></input>
+  //   ));
+  // };
 
   console.log("INPUTS is =", inputs);
-  console.log("newPlayers is =", newPlayers);
+  // console.log("newPlayers is =", newPlayers);
 
   return (
     <>
@@ -120,13 +120,15 @@ function NumberRandomizer({ persons }: any) {
           {/* 
     //@ts-ignore */}
           <Forms>{`${inputs}`}</Forms>
-          {/* {players.map((player: any, index: any): any => {
-          return (
-            <div key={index}>
-              <p>{player.name}</p>
-            </div>
-          );
-        })} */}
+        
+          {/* {newPlayers} */}
+          {/* {inputs.map((player: any, { inputs }: any): any => {
+            return (
+              <div key={inputs}>
+                <p>{inputs.inputs}</p>
+              </div>
+            );
+          })} */}
           {/* <Forms onSubmit={handlePlayerSubmit}> */}
           {/* <Input type="text" onChange={handleChange}></Input> */}
           {/* </Forms> */}

@@ -26,12 +26,12 @@ function PlayerInputGenerator(): JSX.Element {
     }
   };
   const addInputs = (): any => {
-    return players.map((persons: any): any => (
+    return players.map((persons: any, index: any): any => (
       <input
-        name="inputs"
+        name="newInputs"
         key={persons}
         type="text"
-        // value={player}
+        // defaultValue={persons}
         // onChange={onClickNumberOfPlayers}
       ></input>
     ));
@@ -49,10 +49,10 @@ function PlayerInputGenerator(): JSX.Element {
   const handleClick = (event: any) => {
     event.preventDefault();
     // @ts-ignore
-    // onClickNumberOfPlayers()
+    // onClickNumberOfPlayers();
     router.push("/NumberRandomizer");
     console.log("you clicked handleClick", event);
-    console.log("numOfPLayers = ", numOfPlayers);
+    // console.log("numOfPLayers = ", numOfPlayers);
   };
   // @ts-ignore
   // console.log(" onClickNumberOfPlayers = ", onClickNumberOfPlayers());
@@ -60,7 +60,10 @@ function PlayerInputGenerator(): JSX.Element {
   // console.log("numOfPLayers = ", numOfPlayers);
   // @ts-ignore
   const inputs = players.length ? <div>{addInputs()}</div> : null;
-  console.log("inputs is =", inputs);
+  // const inputs = players;
+  // const inputs = addInputs(players.persons);
+  console.log("inputs is = ", inputs);
+  console.log("players is = ", players);
 
   return (
     <>
@@ -71,12 +74,8 @@ function PlayerInputGenerator(): JSX.Element {
           value={numOfPlayers}
           onChange={onClickNumberOfPlayers}
         ></input>
-        <button type="submit" onClick={handleClick}>
-          SUBMIT
-        </button>
+        <input type="submit" value="SUBMIT" onClick={handleClick}></input>
       </form>
-      {/* <Link href="/NumberRandomizer"> */}
-      {/* </Link> */}
       <form>
         {/* 
       //@ts-ignore */}
@@ -84,9 +83,9 @@ function PlayerInputGenerator(): JSX.Element {
           {/* {players.length ? <div>{inputs}</div> : null} */}
           {/* 
       //@ts-ignore */}
-          {/* <h3>{addInputs(inputs)}</h3> */}
-          {/* <NumberRandomizer  /> */}
-          {/* <div>{inputs}</div> */}
+          <NumberRandomizer inputs={inputs} />
+
+          <div>{inputs}</div>
           {/* 
       //@ts-ignore */}
         </PlayerContext.Provider>
