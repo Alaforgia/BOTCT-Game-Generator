@@ -40,6 +40,7 @@ function NumberRandomizer({ persons }: any) {
   const inputs: any = useContext(PlayerContext);
 
   const [num, setNum] = useState(0);
+  const [newPlayers, setNewPlayers]: any = useState(PlayerContext);
   const [players, setPlayers]: any = useState([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   //@ts-ignore
@@ -108,7 +109,9 @@ function NumberRandomizer({ persons }: any) {
     ));
   };
 
+
   console.log("INPUTS is =", inputs);
+  console.log("newPlayers is =", newPlayers);
 
   return (
     <>
@@ -129,7 +132,7 @@ function NumberRandomizer({ persons }: any) {
           {/* </Forms> */}
           {/* <input type="text" value={numOfPlayers} onChange={onClickNumberOfPlayers}></input> */}
           {/* <Forms>{players.length ? <div>{addInputs()}</div> : null}</Forms> */}
-          <Forms>{players.length ? <div>{inputs}</div> : null}</Forms>
+          {/* <Forms>{players.length ? <div>{inputs}</div> : null}</Forms> */}
           {/* <Forms>{value}</Forms> */}
           <Button onClick={() => numberButtonHandler()}>Create</Button>
           <Output>

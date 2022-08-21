@@ -17,3 +17,6 @@
 
 ### 8/19/2022
 -[3:37 AM] Difficulties with useContext, I will have to try more after sleep. I think I need to make sure the context consumer is wrapping all of the JSX in PlayerInputGenerator.
+
+### 8/21/2022
+1. useContext cont... undefined is rendering in NumberRandomizer page. Need to figure out how to get the appropriate inputs to show up.
