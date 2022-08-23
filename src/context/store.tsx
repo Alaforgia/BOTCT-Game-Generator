@@ -10,7 +10,7 @@ const useStore = () => {
 
   return {
     players,
-    addPlayer: ({name}:{name: string}) => {
+    addPlayer: (name: string) => {
       // get all the player ids in the game
       const currentPlayerIdsInGame = players.map(player => player.id);
 
@@ -23,10 +23,18 @@ const useStore = () => {
   };
 };
 
-const StoreContext = createContext<ReturnType<typeof useStore> | null>(null);
+export const StoreContext = createContext<ReturnType<typeof useStore> | null>(null);
 
 export const StoreContextProvider = ({ children }: { children: React.ReactNode}) => {
   return (
     <StoreContext.Provider value={useStore()}>{children}</StoreContext.Provider>
   )
+}
+
+export const useGetPlayers = () => {
+  return useContext(StoreContext)?.players
+}
+
+export const useAddPlayer = (name: string) => {
+  return useContext(StoreContext)?.addPlayer(name)
 }
