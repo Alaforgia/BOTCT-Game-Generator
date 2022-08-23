@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState, createContext, useContext } from "react";
-import PlayerContext from "../src/components/PlayerInputGenerator";
+// import PlayerContext from "../src/components/PlayerInputGenerator";
+import PlayerContext from ".././pages/index";
 
 import Home from ".";
 
@@ -38,7 +39,7 @@ const Output = styled.h4``;
 function NumberRandomizer() {
   //@ts-ignore
   const inputs: any = useContext(PlayerContext);
-  // console.log(PlayerContext);
+  console.log(PlayerContext);
 
   const [num, setNum] = useState(0);
   // const [newPlayers, setNewPlayers]: any = useState(PlayerContext);
@@ -120,7 +121,7 @@ function NumberRandomizer() {
           {/* 
     //@ts-ignore */}
           <Forms>{`${inputs}`}</Forms>
-        
+
           {/* {newPlayers} */}
           {/* {inputs.map((player: any, { inputs }: any): any => {
             return (
@@ -133,7 +134,7 @@ function NumberRandomizer() {
           {/* <Input type="text" onChange={handleChange}></Input> */}
           {/* </Forms> */}
           {/* <input type="text" value={numOfPlayers} onChange={onClickNumberOfPlayers}></input> */}
-          {/* <Forms>{players.length ? <div>{addInputs()}</div> : null}</Forms> */}
+          {/* <Forms>{players.length ? <div>{inputs}</div> : null}</Forms> */}
           {/* <Forms>{players.length ? <div>{inputs}</div> : null}</Forms> */}
           {/* <Forms>{value}</Forms> */}
           <Button onClick={() => numberButtonHandler()}>Create</Button>

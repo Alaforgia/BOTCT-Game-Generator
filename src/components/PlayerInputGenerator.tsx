@@ -59,9 +59,9 @@ function PlayerInputGenerator(): JSX.Element {
   // @ts-ignore
   // console.log("numOfPLayers = ", numOfPlayers);
   // @ts-ignore
-  const inputs = players.length ? <div>{addInputs()}</div> : null;
+  // const inputs = players.length ? <div>{addInputs()}</div> : null;
   // const inputs = players;
-  // const inputs = addInputs(players.persons);
+  const inputs = addInputs(players.persons);
   console.log("inputs is = ", inputs);
   console.log("players is = ", players);
 
@@ -83,9 +83,9 @@ function PlayerInputGenerator(): JSX.Element {
           {/* {players.length ? <div>{inputs}</div> : null} */}
           {/* 
       //@ts-ignore */}
-          <NumberRandomizer inputs={inputs} />
+          {/* <NumberRandomizer inputs={inputs} /> */}
 
-          <div>{inputs}</div>
+          {/* <div>{inputs}</div> */}
           {/* 
       //@ts-ignore */}
         </PlayerContext.Provider>

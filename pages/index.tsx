@@ -2,10 +2,69 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 // import styles from "../styles/Home.module.css";
-import PlayerInputGenerator from "../src/components/PlayerInputGenerator";
-import { useContext } from "react";
-import { PlayerContext } from "../src/components/PlayerInputGenerator";
+import { useState, useContext, createContext } from "react";
+import { useRouter } from "next/router";
+import NumberRandomizer from "./NumberRandomizer";
+// import { PlayerContext } from "../src/components/PlayerInputGenerator";
+
+//@ts-ignore
+export const PlayerContext: any = createContext();
 const Home: NextPage = () => {
+  const router = useRouter();
+  const [numOfPlayers, setNumOfPlayers] = useState(0);
+  const [players, setPlayers] = useState([]);
+  const player: any = [];
+  //
+  const onClickNumberOfPlayers = (e: any): any => {
+    const numOfPlayers = e.target.value;
+
+    setNumOfPlayers(numOfPlayers);
+    if (numOfPlayers > 0) {
+      const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
+      setPlayers(generateInputs);
+    } else {
+      setPlayers([]);
+    }
+  };
+  const addInputs = (): any => {
+    return players.map((persons: any, index: any): any => (
+      <input
+        name="newInputs"
+        key={persons}
+        type="text"
+        // defaultValue={persons}
+        // onChange={onClickNumberOfPlayers}
+      ></input>
+    ));
+  };
+
+  const handleSubmit = (event: any): void => {
+    event.preventDefault();
+    // @ts-ignore
+    onClickNumberOfPlayers();
+    // addInputs();
+    console.log("you clicked Submit", event);
+  };
+  //
+
+  const handleClick = (event: any) => {
+    event.preventDefault();
+    // @ts-ignore
+    // onClickNumberOfPlayers();
+    router.push("/NumberRandomizer");
+    console.log("you clicked handleClick", event);
+    // console.log("numOfPLayers = ", numOfPlayers);
+  };
+  // @ts-ignore
+  // console.log(" onClickNumberOfPlayers = ", onClickNumberOfPlayers());
+  // @ts-ignore
+  // console.log("numOfPLayers = ", numOfPlayers);
+  // @ts-ignore
+  // const inputs = players.length ? <div>{addInputs()}</div> : null;
+  // const inputs = players;
+  const inputs = addInputs(players.persons);
+  console.log("inputs is = ", inputs);
+  console.log("players is = ", players);
   return (
     <>
       <div>
@@ -19,7 +78,28 @@ const Home: NextPage = () => {
           <h1>
             Welcome to <a href="https://bloodontheclocktower.com/">Blood On The Clock Tower</a> Companion!
           </h1>
-      <PlayerInputGenerator />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              // defaultValue={numOfPlayers}
+              value={numOfPlayers}
+              onChange={onClickNumberOfPlayers}
+            ></input>
+            <input type="submit" value="SUBMIT" onClick={handleClick}></input>
+          </form>
+
+          {/* 
+      //@ts-ignore */}
+          <PlayerContext.Provider value={inputs}>
+            {/* {players.length ? <div>{inputs}</div> : null} */}
+            {/* 
+      //@ts-ignore */}
+            {/* <NumberRandomizer inputs={inputs} /> */}
+
+            <div>{inputs}</div>
+            {/* 
+      //@ts-ignore */}
+          </PlayerContext.Provider>
         </main>
       </div>
     </>
