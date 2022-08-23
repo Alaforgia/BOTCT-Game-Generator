@@ -122,7 +122,7 @@ function NumberRandomizer() {
     //@ts-ignore */}
           <Forms>{`${inputs}`}</Forms>
 
-          {/* {newPlayers} */}
+          {inputs}
           {/* {inputs.map((player: any, { inputs }: any): any => {
             return (
               <div key={inputs}>

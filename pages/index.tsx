@@ -30,7 +30,7 @@ const Home: NextPage = () => {
     return players.map((persons: any, index: any): any => (
       <input
         name="newInputs"
-        key={persons}
+        key={index}
         type="text"
         // defaultValue={persons}
         // onChange={onClickNumberOfPlayers}
@@ -41,30 +41,44 @@ const Home: NextPage = () => {
   const handleSubmit = (event: any): void => {
     event.preventDefault();
     // @ts-ignore
-    onClickNumberOfPlayers();
+    // onClickNumberOfPlayers();
+    // @ts-ignore
+    // updateInputs();
     // addInputs();
-    console.log("you clicked Submit", event);
+    // console.log("you clicked Submit", event);
   };
   //
 
   const handleClick = (event: any) => {
     event.preventDefault();
     // @ts-ignore
+    updateInputs();
+    // @ts-ignore
     // onClickNumberOfPlayers();
     router.push("/NumberRandomizer");
-    console.log("you clicked handleClick", event);
-    // console.log("numOfPLayers = ", numOfPlayers);
+    // console.log("you clicked handleClick", event);
+    // console.log("inputs on click is = ", inputs);
   };
+
+  const updateInputs = () => {
+    setPlayers((previousState) => {
+      return { ...previousState };
+    });
+  };
+
   // @ts-ignore
   // console.log(" onClickNumberOfPlayers = ", onClickNumberOfPlayers());
   // @ts-ignore
   // console.log("numOfPLayers = ", numOfPlayers);
   // @ts-ignore
+  const inputs = updateInputs;
+  // const inputs = addInputs();
+  // console.log("updateInputs is =", updateInputs);
+  // @ts-ignore
   // const inputs = players.length ? <div>{addInputs()}</div> : null;
-  // const inputs = players;
-  const inputs = addInputs(players.persons);
   console.log("inputs is = ", inputs);
-  console.log("players is = ", players);
+  // console.log("players is = ", players);
+
   return (
     <>
       <div>
@@ -96,7 +110,7 @@ const Home: NextPage = () => {
       //@ts-ignore */}
             {/* <NumberRandomizer inputs={inputs} /> */}
 
-            <div>{inputs}</div>
+            {/* <div>{inputs}</div> */}
             {/* 
       //@ts-ignore */}
           </PlayerContext.Provider>
