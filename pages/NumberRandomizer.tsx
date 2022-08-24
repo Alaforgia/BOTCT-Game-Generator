@@ -45,7 +45,7 @@ function NumberRandomizer() {
   // const [newPlayers, setNewPlayers]: any = useState(PlayerContext);
   const [players, setPlayers]: any = useState([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
-  const prevNumOfPlayers: any = useRef();
+  // const prevNumOfPlayers: any = useRef();
   //@ts-ignore
   // useEffect((): any => {}, []);
 
@@ -123,7 +123,7 @@ function NumberRandomizer() {
     //@ts-ignore */}
           <Forms>
             {`${inputs}`}
-            {prevNumOfPlayers.current}
+            {/* {prevNumOfPlayers.current} */}
           </Forms>
 
           {inputs}

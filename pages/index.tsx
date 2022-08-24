@@ -51,11 +51,13 @@ const Home: NextPage = () => {
   const handleSubmit = (event: any): void => {
     event.preventDefault();
     // @ts-ignore
+    setNumOfPlayers(event.target.value);
+    // @ts-ignore
     // onClickNumberOfPlayers();
     // @ts-ignore
     // updateInputs();
     // addInputs();
-    // console.log("you clicked Submit", event);
+    console.log("you clicked Submit = ", event);
   };
   //
 
@@ -67,7 +69,7 @@ const Home: NextPage = () => {
     // @ts-ignore
     // onClickNumberOfPlayers();
     router.push("/NumberRandomizer");
-    console.log("you clicked handleClick", event);
+    console.log("you clicked handleClick = ", event.target.value);
     console.log("inputs on click is = ", inputs);
   };
 
@@ -86,7 +88,7 @@ const Home: NextPage = () => {
   // const inputs = addInputs();
   // console.log("updateInputs is =", updateInputs);
   // @ts-ignore
-  const inputs = players.length ? <div>{addInputs()}</div> : null;
+  const inputs = players.length ? <div>{addInputs(prevNumOfPlayers.current)}</div> : null;
   console.log("inputs is = ", inputs);
   // console.log("players is = ", players);
 
@@ -115,19 +117,21 @@ const Home: NextPage = () => {
               // }
               onChange={onClickNumberOfPlayers}
             ></input>
-            <input type="submit" value="SUBMIT" onClick={handleClick}></input>
           </form>
+          <button type="submit" value={numOfPlayers} onClick={handleClick}>
+            SUBMIT
+          </button>
 
           {/* 
       //@ts-ignore */}
           <PlayerContext.Provider value={inputs}>
-            {/* {players.length ? <div>{inputs}</div> : null} */}
+            {/* {players.length ? <div>{addInputs()}</div> : null} */}
             {/* 
       //@ts-ignore */}
             {/* <NumberRandomizer inputs={inputs} /> */}
-            {prevNumOfPlayers.current}
+            {/* {prevNumOfPlayers.current} */}
 
-            {/* <div>{inputs}</div> */}
+            <div>{inputs}</div>
             {/* 
       //@ts-ignore */}
           </PlayerContext.Provider>
