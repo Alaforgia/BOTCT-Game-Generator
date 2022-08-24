@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 // import styles from "../styles/Home.module.css";
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import NumberRandomizer from "./NumberRandomizer";
 // import { PlayerContext } from "../src/components/PlayerInputGenerator";
@@ -13,7 +13,17 @@ const Home: NextPage = () => {
   const router = useRouter();
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [players, setPlayers] = useState([]);
-  const player: any = [];
+  // const [numOfPlayersInput, setNumOfPlayersInputs] = useState(0);
+  // const numOfPlayersInput: any = useRef();
+  const prevNumOfPlayers: any = useRef([]);
+  //@ts-ignore
+  // useEffect((): any => {
+  //   prevNumOfPlayers.current = numOfPlayersInput;
+  // }, [numOfPlayersInput]);
+
+  useEffect((): any => {
+    prevNumOfPlayers.current = numOfPlayers;
+  }, [numOfPlayers]);
   //
   const onClickNumberOfPlayers = (e: any): any => {
     const numOfPlayers = e.target.value;
@@ -52,12 +62,13 @@ const Home: NextPage = () => {
   const handleClick = (event: any) => {
     event.preventDefault();
     // @ts-ignore
-    updateInputs();
+    setNumOfPlayers(event.target.value);
+    // updateInputs();
     // @ts-ignore
     // onClickNumberOfPlayers();
     router.push("/NumberRandomizer");
-    // console.log("you clicked handleClick", event);
-    // console.log("inputs on click is = ", inputs);
+    console.log("you clicked handleClick", event);
+    console.log("inputs on click is = ", inputs);
   };
 
   const updateInputs = () => {
@@ -71,11 +82,11 @@ const Home: NextPage = () => {
   // @ts-ignore
   // console.log("numOfPLayers = ", numOfPlayers);
   // @ts-ignore
-  const inputs = updateInputs;
+  // const inputs = updateInputs;
   // const inputs = addInputs();
   // console.log("updateInputs is =", updateInputs);
   // @ts-ignore
-  // const inputs = players.length ? <div>{addInputs()}</div> : null;
+  const inputs = players.length ? <div>{addInputs()}</div> : null;
   console.log("inputs is = ", inputs);
   // console.log("players is = ", players);
 
@@ -96,7 +107,12 @@ const Home: NextPage = () => {
             <input
               type="text"
               // defaultValue={numOfPlayers}
+              // ref={numOfPlayersInput}
               value={numOfPlayers}
+              // onChange={(e) =>
+              //   //@ts-ignore
+              //   setNumOfPlayers(e.target.value)
+              // }
               onChange={onClickNumberOfPlayers}
             ></input>
             <input type="submit" value="SUBMIT" onClick={handleClick}></input>
@@ -109,6 +125,7 @@ const Home: NextPage = () => {
             {/* 
       //@ts-ignore */}
             {/* <NumberRandomizer inputs={inputs} /> */}
+            {prevNumOfPlayers.current}
 
             {/* <div>{inputs}</div> */}
             {/* 

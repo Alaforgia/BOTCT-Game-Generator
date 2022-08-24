@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { useEffect, useState, createContext, useContext } from "react";
+import { useEffect, useState, createContext, useContext, useRef } from "react";
 // import PlayerContext from "../src/components/PlayerInputGenerator";
 import PlayerContext from ".././pages/index";
 
@@ -45,6 +45,7 @@ function NumberRandomizer() {
   // const [newPlayers, setNewPlayers]: any = useState(PlayerContext);
   const [players, setPlayers]: any = useState([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
+  const prevNumOfPlayers: any = useRef();
   //@ts-ignore
   // useEffect((): any => {}, []);
 
@@ -120,7 +121,10 @@ function NumberRandomizer() {
         <Wrapper>
           {/* 
     //@ts-ignore */}
-          <Forms>{`${inputs}`}</Forms>
+          <Forms>
+            {`${inputs}`}
+            {prevNumOfPlayers.current}
+          </Forms>
 
           {inputs}
           {/* {inputs.map((player: any, { inputs }: any): any => {
