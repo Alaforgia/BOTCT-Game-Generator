@@ -93,7 +93,7 @@ const Home: NextPage = () => {
   // const inputs = addInputs();
   // console.log("updateInputs is =", updateInputs);
   // @ts-ignore
-  // const inputs = players.length ? <div>{addInputs(prevNumOfPlayers.current)}</div> : null;
+  const inputs = players.length ? <div>{addInputs(prevNumOfPlayers.current)}</div> : null;
   // console.log("inputs is = ", inputs);
   // console.log("players is = ", players);
 
@@ -146,11 +146,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default function ContextPageWrapper() {
-  return (
-    <StoreContextProvider>
-      <Home />
-      <NumberRandomizer />
-    </StoreContextProvider>
-  );
-}
+export default Home;
