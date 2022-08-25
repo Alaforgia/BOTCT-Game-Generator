@@ -1,9 +1,7 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState, createContext, useContext, useRef } from "react";
-// import PlayerContext from "../src/components/PlayerInputGenerator";
 import PlayerContext from ".././pages/index";
-
-import Home from ".";
+import { StoreContextProvider, StoreContext } from "../src/context/store";
 
 const Wrapper = styled.main`
   display: flex;
@@ -39,7 +37,9 @@ const Output = styled.h4``;
 function NumberRandomizer() {
   //@ts-ignore
   const inputs: any = useContext(PlayerContext);
-  console.log(PlayerContext);
+  // const inputs: any = useContext(StoreContext);
+  // console.log(PlayerContext);
+  // console.log("StoreContext is = ", StoreContext);
 
   const [num, setNum] = useState(0);
   // const [newPlayers, setNewPlayers]: any = useState(PlayerContext);
@@ -155,4 +155,13 @@ function NumberRandomizer() {
   );
 }
 
-export default NumberRandomizer;
+// export default NumberRandomizer;
+
+
+export default function ContextPageWrapper() {
+  return (
+    <StoreContextProvider>
+      <NumberRandomizer />
+    </StoreContextProvider>
+  );
+}

@@ -4,23 +4,26 @@ import Image from "next/image";
 // import styles from "../styles/Home.module.css";
 import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useGetPlayers, useAddPlayer, StoreContextProvider } from "../src/context/store";
 import NumberRandomizer from "./NumberRandomizer";
 // import { PlayerContext } from "../src/components/PlayerInputGenerator";
 
 //@ts-ignore
-export const PlayerContext: any = createContext();
+export const PlayerContext: any = createContext(null);
 const Home: NextPage = () => {
   const router = useRouter();
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [players, setPlayers] = useState([]);
-  // const [numOfPlayersInput, setNumOfPlayersInputs] = useState(0);
+  // const [numOfPlayersInputs, setNumOfPlayersInputs] = useState(0);
   // const numOfPlayersInput: any = useRef();
   const prevNumOfPlayers: any = useRef([]);
   //@ts-ignore
   // useEffect((): any => {
   //   prevNumOfPlayers.current = numOfPlayersInput;
   // }, [numOfPlayersInput]);
-
+  const PlayerContextProvider = ({ children }) => (
+    <PlayerContext.Provider value={useState(0)}>{children}</PlayerContext.Provider>
+  );
   useEffect((): any => {
     prevNumOfPlayers.current = numOfPlayers;
   }, [numOfPlayers]);
@@ -36,11 +39,13 @@ const Home: NextPage = () => {
       setPlayers([]);
     }
   };
-  const addInputs = (): any => {
+  const addInputs = ({ setNumOfPlayers }: any): any => {
+    // @ts-ignore
+    // const [numOfPlayersInputs, setNumOfPlayersInputs] = useContext(PlayerContext);
     return players.map((persons: any, index: any): any => (
       <input
         name="newInputs"
-        key={index}
+        key={index.id}
         type="text"
         // defaultValue={persons}
         // onChange={onClickNumberOfPlayers}
@@ -84,12 +89,12 @@ const Home: NextPage = () => {
   // @ts-ignore
   // console.log("numOfPLayers = ", numOfPlayers);
   // @ts-ignore
-  // const inputs = updateInputs;
+  // const inputs = useState(0);
   // const inputs = addInputs();
   // console.log("updateInputs is =", updateInputs);
   // @ts-ignore
-  const inputs = players.length ? <div>{addInputs(prevNumOfPlayers.current)}</div> : null;
-  console.log("inputs is = ", inputs);
+  // const inputs = players.length ? <div>{addInputs(prevNumOfPlayers.current)}</div> : null;
+  // console.log("inputs is = ", inputs);
   // console.log("players is = ", players);
 
   return (
@@ -124,21 +129,28 @@ const Home: NextPage = () => {
 
           {/* 
       //@ts-ignore */}
-          <PlayerContext.Provider value={inputs}>
+          <PlayerContextProvider value={inputs}>
             {/* {players.length ? <div>{addInputs()}</div> : null} */}
             {/* 
       //@ts-ignore */}
             {/* <NumberRandomizer inputs={inputs} /> */}
             {/* {prevNumOfPlayers.current} */}
 
-            <div>{inputs}</div>
+            {/* <div>{inputs}</div> */}
             {/* 
       //@ts-ignore */}
-          </PlayerContext.Provider>
+          </PlayerContextProvider>
         </main>
       </div>
     </>
   );
 };
 
-export default Home;
+export default function ContextPageWrapper() {
+  return (
+    <StoreContextProvider>
+      <Home />
+      <NumberRandomizer />
+    </StoreContextProvider>
+  );
+}
