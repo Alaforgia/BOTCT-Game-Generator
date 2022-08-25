@@ -12,6 +12,7 @@ const NumberOfPlayersContextProvider = ({ children }: any) => (
 
 const AddPlayers = (e: any): any => {
   // @ts-ignore
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [, setPlayers]: any = useContext(PlayerContext);
   const [numOfPlayers, setNumOfPlayers]: any = useContext(NumberOfPlayersContext);
@@ -24,6 +25,7 @@ const AddPlayers = (e: any): any => {
   // } else {
   //   setPlayers([]);
   // }
+  console.log("What is numOfPLayers? = ", numOfPlayers);
 
   return (
     <>
@@ -69,10 +71,10 @@ const AddInputs = () => {
   //@ts-ignore
   const [players]: any = useContext(PlayerContext);
   console.log("What is this? = ", players);
-  return players.map((persons: any, index: any): any => {
+  return players?.map((persons: any, index: any): any => {
     <input
       name="newInputs"
-      key={index.id}
+      key={persons}
       type="text"
       // defaultValue={persons}
       // onChange={onClickNumberOfPlayers}
@@ -82,7 +84,14 @@ const AddInputs = () => {
 
 const NumberOfPlayers = (e: any): any => {
   const [players]: any = useContext(PlayerContext);
+  const prevNumOfPlayers: any = useRef([]);
+  useEffect((): any => {
+    prevNumOfPlayers.current = players;
+  }, [players]);
   console.log("What is AddInputs = ", AddInputs());
+  console.log("What is preNumOfPlayers? = ", prevNumOfPlayers.current);
+  // console.log("What is players.map? = ", players.map);
+
   // const inputs = players.length ? (
   //   <div>
   //     {AddInputs()}
@@ -92,7 +101,7 @@ const NumberOfPlayers = (e: any): any => {
   return (
     <>
       <div>
-        Players: 
+        Players:
         {/* {players} */}
         {/* {inputs} */}
         {players.length ? (
