@@ -37,6 +37,7 @@ const AddPlayers = (e: any): any => {
           //   setPlayers(e.target.value);
           // }}
           onChange={(e: any) => {
+            e.preventDefault();
             const numOfPlayers = e.target.value;
 
             setNumOfPlayers(numOfPlayers);
@@ -71,7 +72,7 @@ const AddInputs = () => {
   return players.map((persons: any, index: any): any => {
     <input
       name="newInputs"
-      key={index}
+      key={index.id}
       type="text"
       // defaultValue={persons}
       // onChange={onClickNumberOfPlayers}
@@ -81,14 +82,23 @@ const AddInputs = () => {
 
 const NumberOfPlayers = (e: any): any => {
   const [players]: any = useContext(PlayerContext);
-  console.log("What is this = ", AddInputs());
-
+  console.log("What is AddInputs = ", AddInputs());
+  // const inputs = players.length ? (
+  //   <div>
+  //     {AddInputs()}
+  //     <AddInputs />
+  //   </div>
+  // ) : null;
   return (
     <>
       <div>
-        Players:{" "}
+        Players: 
+        {/* {players} */}
+        {/* {inputs} */}
         {players.length ? (
           <div>
+            {players}
+            {AddInputs()}
             <AddInputs />
           </div>
         ) : null}
@@ -102,13 +112,13 @@ function UsePlayerState() {
 
   return (
     <>
-      <PlayerContextProvider>
-        <NumberOfPlayersContextProvider>
+      <NumberOfPlayersContextProvider>
+        <PlayerContextProvider>
           <Container />
           <NumberOfPlayers />
           {/* <AddInputs /> */}
-        </NumberOfPlayersContextProvider>
-      </PlayerContextProvider>
+        </PlayerContextProvider>
+      </NumberOfPlayersContextProvider>
     </>
   );
 }
