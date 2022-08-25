@@ -20,3 +20,6 @@
 
 ### 8/21/2022
 1. useContext cont... undefined is rendering in NumberRandomizer page. Need to figure out how to get the appropriate inputs to show up.
+
+### 8/25/2022
+- Re-created the Home page code w/ a better useContext structure. AddInputs is returning undefined. players = the index. I need to get players to return input fields with the indexes tied to that. I might try putting the AddInput function inside the onChange or an onClick. Also, I could maybe try and set up the useRef and pass in the persisted data into AddInputs.
