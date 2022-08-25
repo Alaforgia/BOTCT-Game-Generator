@@ -1,17 +1,30 @@
 import { useState, useContext, createContext, useRef, useEffect } from "react";
+import { useAddPlayer, useGetPlayers, StoreContextProvider } from "../src/context/store";
 
 const PlayerContext: any = createContext([]);
+const NumberOfPlayersContext: any = createContext(0);
 const PlayerContextProvider = ({ children }: any) => (
   <PlayerContext.Provider value={useState([])}>{children}</PlayerContext.Provider>
 );
+const NumberOfPlayersContextProvider = ({ children }: any) => (
+  <NumberOfPlayersContext.Provider value={useState(0)}>{children}</NumberOfPlayersContext.Provider>
+);
 
-const AddInputs = (): any => {
+const AddPlayers = (e: any): any => {
   // @ts-ignore
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [, setPlayers]: any = useContext(PlayerContext);
-
-  // const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
+  const [numOfPlayers, setNumOfPlayers]: any = useContext(NumberOfPlayersContext);
   // setPlayers(generateInputs);
+  // numOfPlayers = e.target.value;
+  // setNumOfPlayers(numOfPlayers);
+  // if (numOfPlayers > 0) {
+  //   const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
+  //   setPlayers(generateInputs);
+  // } else {
+  //   setPlayers([]);
+  // }
+
   return (
     <>
       <form onSubmit={(event) => event.preventDefault()}>
@@ -19,12 +32,21 @@ const AddInputs = (): any => {
           type="text"
           // defaultValue={numOfPlayers}
           // ref={numOfPlayersInput}
-          // value={numOfPlayers}
-          // onChange={(e) =>
-          //   //@ts-ignore
-          //   setNumOfPlayers(e.target.value)
-          // }
-          onChange={(e) => setPlayers(e.target.value)}
+          value={numOfPlayers}
+          // onChange={(e) => {
+          //   setPlayers(e.target.value);
+          // }}
+          onChange={(e: any) => {
+            const numOfPlayers = e.target.value;
+
+            setNumOfPlayers(numOfPlayers);
+            if (numOfPlayers > 0) {
+              const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
+              setPlayers(generateInputs);
+            } else {
+              setPlayers([]);
+            }
+          }}
         ></input>
         <input type="submit"></input>
       </form>
@@ -36,29 +58,56 @@ const Container = () => {
   return (
     <>
       <div>
-        <AddInputs />
+        <AddPlayers />
       </div>
     </>
   );
 };
 
-const NumberOfPlayers = (): any => {
+const AddInputs = () => {
+  //@ts-ignore
   const [players]: any = useContext(PlayerContext);
+  console.log("What is this? = ", players);
+  return players.map((persons: any, index: any): any => {
+    <input
+      name="newInputs"
+      key={index}
+      type="text"
+      // defaultValue={persons}
+      // onChange={onClickNumberOfPlayers}
+    ></input>;
+  });
+};
+
+const NumberOfPlayers = (e: any): any => {
+  const [players]: any = useContext(PlayerContext);
+  console.log("What is this = ", AddInputs());
+
   return (
     <>
-      <div>Players: {players}</div>
+      <div>
+        Players:{" "}
+        {players.length ? (
+          <div>
+            <AddInputs />
+          </div>
+        ) : null}
+      </div>
     </>
   );
 };
 
 function UsePlayerState() {
-  console.log("you clicked = ", AddInputs());
+  // console.log("you clicked = ", AddInputs());
 
   return (
     <>
       <PlayerContextProvider>
-        <Container />
-        <NumberOfPlayers />
+        <NumberOfPlayersContextProvider>
+          <Container />
+          <NumberOfPlayers />
+          {/* <AddInputs /> */}
+        </NumberOfPlayersContextProvider>
       </PlayerContextProvider>
     </>
   );
