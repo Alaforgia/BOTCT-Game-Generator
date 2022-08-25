@@ -21,6 +21,7 @@ const useStore = () => {
       // add the player to list of players
       setPlayers([...players, { name: name, id: randomNumber }]);
     },
+    
   };
 };
 
