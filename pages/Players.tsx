@@ -14,8 +14,13 @@ const AddPlayers = (e: any): any => {
   // @ts-ignore
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [, setPlayers]: any = useContext(PlayerContext);
+  const [players, setPlayers]: any = useContext(PlayerContext);
   const [numOfPlayers, setNumOfPlayers]: any = useContext(NumberOfPlayersContext);
+  const prevNumOfPlayers: any = useRef("");
+  useEffect((): any => {
+    prevNumOfPlayers.current = numOfPlayers;
+  }, [numOfPlayers]);
+
   // setPlayers(generateInputs);
   // numOfPlayers = e.target.value;
   // setNumOfPlayers(numOfPlayers);
@@ -26,6 +31,7 @@ const AddPlayers = (e: any): any => {
   //   setPlayers([]);
   // }
   console.log("What is numOfPLayers? = ", numOfPlayers);
+  console.log("What is players @AddPLayers? = ", players);
 
   return (
     <>
@@ -34,6 +40,8 @@ const AddPlayers = (e: any): any => {
           type="text"
           // defaultValue={numOfPlayers}
           // ref={numOfPlayersInput}
+          ref={prevNumOfPlayers}
+          // value={num}
           value={numOfPlayers}
           // onChange={(e) => {
           //   setPlayers(e.target.value);
@@ -52,27 +60,39 @@ const AddPlayers = (e: any): any => {
           }}
         ></input>
         <input type="submit"></input>
+        <div> NumOfPlayers: {numOfPlayers}</div>
+        <div> prevNumOfPlayers.current: {prevNumOfPlayers.current}</div>
+        <div>
+          players.map:
+          {players.map((persons: any, index: any): any => {
+            <input
+              ref={prevNumOfPlayers}
+              name="newInputs"
+              key={persons.id}
+              type="text"
+              // defaultValue={persons}
+              // onChange={onClickNumberOfPlayers}
+            ></input>;
+          })}
+        </div>
+        {players}
+        {/* <NumberOfPlayers /> */}
+        {/* <AddInputs /> */}
       </form>
     </>
   );
 };
-
-const Container = () => {
-  return (
-    <>
-      <div>
-        <AddPlayers />
-      </div>
-    </>
-  );
-};
-
 const AddInputs = () => {
   //@ts-ignore
   const [players]: any = useContext(PlayerContext);
+  // const prevNumOfPlayers: any = useRef([]);
+  // useEffect((): any => {
+  //   prevNumOfPlayers.current = players;
+  // }, [players]);
   console.log("What is this? = ", players);
-  return players?.map((persons: any, index: any): any => {
+  return players.map((persons: any, index: any): any => {
     <input
+      // ref={prevNumOfPlayers}
       name="newInputs"
       key={persons}
       type="text"
@@ -82,15 +102,56 @@ const AddInputs = () => {
   });
 };
 
+const Container = () => {
+  // const [players]: any = useContext(PlayerContext);
+  // const prevNumOfPlayers: any = useRef([]);
+  // useEffect((): any => {
+  //   prevNumOfPlayers.current = players;
+  // }, [players]);
+  return (
+    <>
+      <div>
+        <AddPlayers>
+          <AddInputs
+          // @ts-ignore
+          // ref={prevNumOfPlayers}
+          />
+          <NumberOfPlayers />
+        </AddPlayers>
+      </div>
+    </>
+  );
+};
+
+// const AddInputs = () => {
+//   //@ts-ignore
+//   const [players]: any = useContext(PlayerContext);
+//   // const prevNumOfPlayers: any = useRef([]);
+//   // useEffect((): any => {
+//   //   prevNumOfPlayers.current = players;
+//   // }, [players]);
+//   console.log("What is this? = ", players);
+//   return players.map((persons: any, index: any): any => {
+//     <input
+//       // ref={prevNumOfPlayers}
+//       name="newInputs"
+//       key={persons}
+//       type="text"
+//       // defaultValue={persons}
+//       // onChange={onClickNumberOfPlayers}
+//     ></input>;
+//   });
+// };
+
 const NumberOfPlayers = (e: any): any => {
   const [players]: any = useContext(PlayerContext);
-  const prevNumOfPlayers: any = useRef([]);
-  useEffect((): any => {
-    prevNumOfPlayers.current = players;
-  }, [players]);
+  // const prevNumOfPlayers: any = useRef([]);
+  // useEffect((): any => {
+  //   prevNumOfPlayers.current = players;
+  // }, [players]);
   console.log("What is AddInputs = ", AddInputs());
-  console.log("What is preNumOfPlayers? = ", prevNumOfPlayers.current);
-  // console.log("What is players.map? = ", players.map);
+  // console.log("What is preNumOfPlayers? = ", prevNumOfPlayers.current);
+  console.log("What is players @NumberOfPlayers? = ", players);
 
   // const inputs = players.length ? (
   //   <div>
@@ -107,8 +168,10 @@ const NumberOfPlayers = (e: any): any => {
         {players.length ? (
           <div>
             {players}
+            {/* 
+      //@ts-ignore */}
             {AddInputs()}
-            <AddInputs />
+            {/* <AddInputs /> */}
           </div>
         ) : null}
       </div>
