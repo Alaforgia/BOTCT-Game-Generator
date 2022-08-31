@@ -5,9 +5,9 @@ import { StoreContextProvider } from "../src/context/store";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return  (
-    <StoreContextProvider>
+    // <StoreContextProvider>
       <Component {...pageProps} />
-    </StoreContextProvider>
+    //{/* </StoreContextProvider> */}
   )
 }
 

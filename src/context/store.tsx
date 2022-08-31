@@ -7,11 +7,13 @@ export interface Player {
 const randomNumberGenerator = useNumberRandomizer;
 const useStore = () => {
   const [players, setPlayers] = useState<Player[]>([]);
-  const [numOfPlayers, setNumOfPlayers] = useState(0);
+  // const [numOfPlayers, setNumOfPlayers] = useState(0);
   return {
     players,
-    numOfPlayers,
-    addPlayer: (name: string) => {
+    // numOfPlayers,
+    addPlayer: (name: any): any => {
+   
+   
       // get all the player ids in the game
       const currentPlayerIdsInGame = players.map((player) => player.id);
 
@@ -21,7 +23,6 @@ const useStore = () => {
       // add the player to list of players
       setPlayers([...players, { name: name, id: randomNumber }]);
     },
-    
   };
 };
 
@@ -35,6 +36,10 @@ export const useGetPlayers = () => {
   return useContext(StoreContext)?.players;
 };
 
-export const useAddPlayer = (name: string) => {
+export const useAddPlayer = (name: any) => {
   return useContext(StoreContext)?.addPlayer(name);
 };
+
+// export const useNumPlayers = (): any => {
+//   return useContext(StoreContext)?.numOfPlayers;
+// };
