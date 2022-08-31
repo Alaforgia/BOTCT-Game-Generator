@@ -4,7 +4,7 @@ import Image from "next/image";
 // import styles from "../styles/Home.module.css";
 import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useGetPlayers, useAddPlayer, StoreContextProvider } from "../src/context/store";
+import { useGetPlayers, StoreContextProvider } from "../src/context/store";
 import NumberRandomizer from "./NumberRandomizer";
 // import { PlayerContext } from "../src/components/PlayerInputGenerator";
 

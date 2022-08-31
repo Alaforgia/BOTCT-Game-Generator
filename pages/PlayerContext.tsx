@@ -1,9 +1,9 @@
-import { useGetPlayers, useAddPlayer, StoreContextProvider } from "../src/context/store";
+import { useGetPlayers, StoreContextProvider } from "../src/context/store";
 import { useState, useContext, createContext, useRef, useEffect } from "react";
 
 const AddPlayers = (): any => {
   const getPlayers = useGetPlayers();
-  const addPlayer = useAddPlayer([]);
+  // const addPlayer = useAddPlayer([]);
   useEffect(() => {
     AddPlayers();
     // getPlayers();

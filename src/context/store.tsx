@@ -36,9 +36,9 @@ export const useGetPlayers = () => {
   return useContext(StoreContext)?.players;
 };
 
-export const useAddPlayer = (name: any) => {
-  return useContext(StoreContext)?.addPlayer(name);
-};
+// export const useAddPlayer = (name: any) => {
+//   return useContext(StoreContext)?.addPlayer(name);
+// };
 
 // export const useNumPlayers = (): any => {
 //   return useContext(StoreContext)?.numOfPlayers;
