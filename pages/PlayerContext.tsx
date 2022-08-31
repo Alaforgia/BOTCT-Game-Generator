@@ -34,7 +34,7 @@ function PlayerContext() {
   const handleClick = () => {
     prevNumOfPlayers.current.value;
     console.log(prevNumOfPlayers.current.value);
-    const numOfPlayers = prevNumOfPlayers;
+    const numOfPlayers = prevNumOfPlayers.current.value;
 
     setNumOfPlayers(numOfPlayers);
     if (numOfPlayers > 0) {
