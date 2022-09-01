@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState, createContext, useContext, useRef } from "react";
-import PlayerContext from ".././pages/index";
 import { StoreContextProvider, StoreContext } from "../src/context/store";
+import PlayerContext from "./PlayerContext";
+import InputContextProvider from "../pages/PlayerContext";
+import { InputContext } from "./PlayerContext";
 
 const Wrapper = styled.main`
   display: flex;
@@ -36,7 +38,7 @@ const Output = styled.h4``;
 
 function NumberRandomizer() {
   //@ts-ignore
-  const inputs: any = useContext(PlayerContext);
+  const inputs: any = useContext(InputContext);
   // const inputs: any = useContext(StoreContext);
   // console.log(PlayerContext);
   // console.log("StoreContext is = ", StoreContext);
@@ -111,9 +113,9 @@ function NumberRandomizer() {
   //     ></input>
   //   ));
   // };
-
+  // const inputs =
   console.log("INPUTS is =", inputs);
-  // console.log("newPlayers is =", newPlayers);
+  console.log("InputContext is =", InputContext);
 
   return (
     <>
@@ -122,11 +124,11 @@ function NumberRandomizer() {
           {/* 
     //@ts-ignore */}
           <Forms>
-            {`${inputs}`}
+            {/* {`${inputs}`} */}
             {/* {prevNumOfPlayers.current} */}
           </Forms>
 
-          {inputs}
+          {/* {inputs} */}
           {/* {inputs.map((player: any, { inputs }: any): any => {
             return (
               <div key={inputs}>
@@ -149,19 +151,22 @@ function NumberRandomizer() {
             return <div key={player.id}>{players.player}</div>;
           })} */}
           </Output>
+          {/* <InputContextProvider /> */}
+          {players.length ? <div>{inputs}</div> : null}
+          {inputs}
         </Wrapper>
       </div>
     </>
   );
 }
 
-// export default NumberRandomizer;
+export default NumberRandomizer;
 
-
-export default function ContextPageWrapper() {
-  return (
-    <StoreContextProvider>
-      <NumberRandomizer />
-    </StoreContextProvider>
-  );
-}
+// export default function ContextPageWrapper() {
+//   return (
+//     // @ts-ignore
+//       <NumberRandomizer />
+//     // <InputContextProvider>
+//     // {/* </InputContextProvider> */}
+//   );
+// }
