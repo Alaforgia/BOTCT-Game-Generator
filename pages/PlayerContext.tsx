@@ -70,7 +70,7 @@ function PlayerContext() {
 export const AddInputsContext = createContext<ReturnType<typeof addInputs> | null>(null);
 
 export const AddInputsContextProvider = ({ children }: { children: React.ReactNode }): any => (
-  <AddInputsContext.Provider value={addInputs()}>{children}</AddInputsContext.Provider>
+  <AddInputsContext.Provider value={useState()}>{children}</AddInputsContext.Provider>
 );
 
 export default PlayerContext;
