@@ -27,3 +27,6 @@
 ### 8/30/2022
   - State is not getting passed into the .map. Going to try to place all functions within parent and attempt to get new inputs returned onChange.
   - [9:54 PM] All attempts have failed. .map() does not return input fields. I may need to start a new branch and rebuild using reducers and/or a state manager like Redux or Zustand. The code in Players.tsx is very messy from attempts, I no longer think I can get it to work with the current useContext setup I have.
+
+### 8/31/2022
+- Rebuild is helping get back on track. I got something to show up as context in NumberRandomizer. It is not what I want but it isn't "undefined". The state of the generated inputs still does not want to carry over to the other component. I may still use Zustand, but I want to make sure i've exhausted my options with this progress i've made.
