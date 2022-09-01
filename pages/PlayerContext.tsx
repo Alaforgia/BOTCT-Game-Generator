@@ -1,5 +1,6 @@
 import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
+import { create } from "domain";
 
 export const InputContext: any = createContext([]);
 
@@ -50,14 +51,19 @@ function PlayerContext() {
     console.log("END of setNumOfPlayers");
     router.push("/NumberRandomizer");
   };
+  //@ts-ignore
+  export const AddInputsContext: any = createContext();
+
   return (
     <div>
       <PlayerCountInput />
       {/* <input ref={prevNumOfPlayers} type="text" name="players" /> */}
       <button onClick={handleClick}>SUBMIT</button>
       {/* <InputContextProvider value={prevNumOfPlayers}> */}
+      <AddInputsContext.Provider value={addInputs()}>
         {players.length ? <div>{addInputs()}</div> : null}
-        {/* </InputContextProvider> */}
+      </AddInputsContext.Provider>
+      {/* </InputContextProvider> */}
     </div>
   );
 }

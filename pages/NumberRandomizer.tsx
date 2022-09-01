@@ -4,6 +4,7 @@ import { StoreContextProvider, StoreContext } from "../src/context/store";
 import PlayerContext from "./PlayerContext";
 import InputContextProvider from "../pages/PlayerContext";
 import { InputContext } from "./PlayerContext";
+import AddInputsContext from "./PlayerContext";
 
 const Wrapper = styled.main`
   display: flex;
