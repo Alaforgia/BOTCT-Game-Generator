@@ -4,7 +4,7 @@ import { StoreContextProvider, StoreContext } from "../src/context/store";
 import PlayerContext from "./PlayerContext";
 import InputContextProvider from "../pages/PlayerContext";
 import { InputContext } from "./PlayerContext";
-import AddInputsContext from "./PlayerContext";
+import { AddInputsContext } from "./PlayerContext";
 
 const Wrapper = styled.main`
   display: flex;
@@ -40,6 +40,7 @@ const Output = styled.h4``;
 function NumberRandomizer() {
   //@ts-ignore
   const inputs: any = useContext(InputContext);
+  const addInputs: any = useContext(AddInputsContext);
   // const inputs: any = useContext(StoreContext);
   // console.log(PlayerContext);
   // console.log("StoreContext is = ", StoreContext);
@@ -117,6 +118,8 @@ function NumberRandomizer() {
   // const inputs =
   console.log("INPUTS is =", inputs);
   console.log("InputContext is =", InputContext);
+  console.log("addInputs is = ", addInputs);
+  console.log("AddInputsContext is =", AddInputsContext);
 
   return (
     <>
@@ -152,6 +155,8 @@ function NumberRandomizer() {
             return <div key={player.id}>{players.player}</div>;
           })} */}
           </Output>
+          {/* <AddInputsContext /> */}
+          {addInputs}
           {/* <InputContextProvider /> */}
           {players.length ? <div>{inputs}</div> : null}
           {inputs}

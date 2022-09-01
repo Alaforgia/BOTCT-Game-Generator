@@ -51,8 +51,6 @@ function PlayerContext() {
     console.log("END of setNumOfPlayers");
     router.push("/NumberRandomizer");
   };
-  //@ts-ignore
-  export const AddInputsContext: any = createContext();
 
   return (
     <div>
@@ -60,12 +58,19 @@ function PlayerContext() {
       {/* <input ref={prevNumOfPlayers} type="text" name="players" /> */}
       <button onClick={handleClick}>SUBMIT</button>
       {/* <InputContextProvider value={prevNumOfPlayers}> */}
-      <AddInputsContext.Provider value={addInputs()}>
-        {players.length ? <div>{addInputs()}</div> : null}
-      </AddInputsContext.Provider>
+      {/* <AddInputsContext.Provider value={playerInputs}> */}
+      {players.length ? <div>{addInputs()}</div> : null}
+      {/* </AddInputsContext.Provider> */}
       {/* </InputContextProvider> */}
     </div>
   );
 }
+// export const StoreContext = createContext<ReturnType<typeof addInputs> | null>(null);
+//@ts-ignore
+export const AddInputsContext = createContext<ReturnType<typeof addInputs> | null>(null);
+
+export const AddInputsContextProvider = ({ children }: { children: React.ReactNode }): any => (
+  <AddInputsContext.Provider value={addInputs()}>{children}</AddInputsContext.Provider>
+);
 
 export default PlayerContext;
