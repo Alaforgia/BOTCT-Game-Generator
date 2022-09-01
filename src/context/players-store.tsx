@@ -23,7 +23,7 @@ const usePlayersStore = () => {
   };
 };
 
-export const PlayersStoreContext = createContext<ReturnType<typeof usePlayersStore> | null>(null);
+const PlayersStoreContext = createContext<ReturnType<typeof usePlayersStore> | null>(null);
 
 export const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
   return <PlayersStoreContext.Provider value={usePlayersStore()}>{children}</PlayersStoreContext.Provider>;
@@ -36,3 +36,6 @@ export const useAddPlayers = () => {
 export const useGetPlayers = () => {
   return useContext(PlayersStoreContext)?.players;
 };
+
+export const useNumOfPlayers = () => useContext(PlayersStoreContext)?.numOfPlayers;
+
