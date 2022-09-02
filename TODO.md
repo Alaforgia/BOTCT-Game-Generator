@@ -36,3 +36,7 @@
 ### 8/31/2022
 
 - Rebuild is helping get back on track. I got something to show up as context in NumberRandomizer. It is not what I want but it isn't "undefined". The state of the generated inputs still does not want to carry over to the other component. I may still use Zustand, but I want to make sure i've exhausted my options with this progress i've made. I think it's that the value of the provider is just useState([]) so its passing an empty array state instead of the set state given. So I need to try and create a context that has the value of the previous state or current state and then wrap the _app with that.
+
+### 09/02/2022
+
+- I will try using react-router useHistory to maybe be able to move the input result to the other page. If these attempts fail, I will just have the generated inputs remain on the same page and then start working on number randomizing and adding game data.
