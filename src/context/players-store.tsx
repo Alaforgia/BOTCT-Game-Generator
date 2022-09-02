@@ -4,7 +4,7 @@ const usePlayersStore = () => {
   const prevNumOfPlayers: any = useRef([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [players, setPlayers] = useState(prevNumOfPlayers);
-
+  console.log("what is this = ", prevNumOfPlayers);
   return {
     players,
     numOfPlayers,
@@ -24,10 +24,10 @@ const usePlayersStore = () => {
     //
     addInputs: (): any => {
       // const playerInputs =
-      // players.map((player: any, index: any): any => (
-      //   <input ref={prevNumOfPlayers} name="newInputs" key={player.toString()} id={player.id} type="text" />
-      // ));
-      players.map((player: any) => player.id);
+      players.map((player: any, index: any): any => (
+        <input ref={prevNumOfPlayers} name="newInputs" key={player.toString()} id={player.id} type="text" />
+      ));
+      // players.map((player: any) => player.id);
 
       // setPlayers([...players]);
     },

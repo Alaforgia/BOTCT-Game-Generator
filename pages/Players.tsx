@@ -58,7 +58,7 @@ const AddInputs = (): any => {
 const InputsOnClick = () => {
   const addPlayers = useAddNumOfPlayers();
   const getPlayers: any = useGetPlayers();
-  console.log("working", getPlayers);
+  console.log("working", addPlayers);
 
   return (
     <>
