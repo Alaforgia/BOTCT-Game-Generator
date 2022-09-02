@@ -39,4 +39,4 @@
 
 ### 09/02/2022
 
-- I will try using react-router useHistory to maybe be able to move the input result to the other page. If these attempts fail, I will just have the generated inputs remain on the same page and then start working on number randomizing and adding game data.
+- I will try using react-router useHistory or Next useRouter to maybe be able to move the input result to the other page. If these attempts fail, I will just have the generated inputs remain on the same page and then start working on number randomizing and adding game data.
