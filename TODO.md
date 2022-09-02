@@ -36,3 +36,7 @@
 ### 8/31/2022
 
 - Rebuild is helping get back on track. I got something to show up as context in NumberRandomizer. It is not what I want but it isn't "undefined". The state of the generated inputs still does not want to carry over to the other component. I may still use Zustand, but I want to make sure i've exhausted my options with this progress i've made. I think it's that the value of the provider is just useState([]) so its passing an empty array state instead of the set state given. So I need to try and create a context that has the value of the previous state or current state and then wrap the _app with that.
+
+### 9/01/2022
+
+- No success with current branch. The players-store is not functioning like I thought. All I'm trying to do is carry the state of the generated inputs to another page, or store the inputs globally and place them. I can't let things get too complicated. I will try and move the code to the store and try it from there.
