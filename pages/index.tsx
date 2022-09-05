@@ -82,7 +82,7 @@ const Home: NextPage = () => {
             Welcome to <a href="https://bloodontheclocktower.com/">Blood On The Clock Tower</a> Companion!
           </h1>
           <form>
-            <input
+            {/* <input
               type="text"
               // defaultValue={numOfPlayers}
               // ref={numOfPlayersInput}
@@ -92,7 +92,8 @@ const Home: NextPage = () => {
               //   setNumOfPlayers(e.target.value)
               // }
               // onChange={onClickNumberOfPlayers}
-            ></input>
+            ></input> */}
+            <PlayerCountInput />
           </form>
           <button type="submit" value={numOfPlayers} onClick={handleClick}>
             Add Player
@@ -101,7 +102,7 @@ const Home: NextPage = () => {
           {/* 
       //@ts-ignore */}
 
-          {players.length ? <div>{addInputs()}</div> : null}
+          {/* {players.length ? <div>{addInputs()}</div> : null} */}
           {/* 
       //@ts-ignore */}
           {/* <NumberRandomizer inputs={inputs} /> */}
