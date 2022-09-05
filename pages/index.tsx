@@ -1,15 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-// import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useGetPlayers, StoreContextProvider } from "../src/context/store";
 import NumberRandomizer from "./NumberRandomizer";
-// import { PlayerContext } from "../src/components/PlayerInputGenerator";
 
-//@ts-ignore
-export const PlayerContext: any = createContext(null);
+
+
+
 const Home: NextPage = () => {
   const router = useRouter();
   const [numOfPlayers, setNumOfPlayers] = useState(0);
@@ -21,9 +20,7 @@ const Home: NextPage = () => {
   // useEffect((): any => {
   //   prevNumOfPlayers.current = numOfPlayersInput;
   // }, [numOfPlayersInput]);
-  const PlayerContextProvider = ({ children }) => (
-    <PlayerContext.Provider value={useState(0)}>{children}</PlayerContext.Provider>
-  );
+
   useEffect((): any => {
     prevNumOfPlayers.current = numOfPlayers;
   }, [numOfPlayers]);
@@ -39,7 +36,7 @@ const Home: NextPage = () => {
       setPlayers([]);
     }
   };
-  const addInputs = ({ setNumOfPlayers }: any): any => {
+  const addInputs = (): any => {
     // @ts-ignore
     // const [numOfPlayersInputs, setNumOfPlayersInputs] = useContext(PlayerContext);
     return players.map((persons: any, index: any): any => (
@@ -73,16 +70,11 @@ const Home: NextPage = () => {
     // updateInputs();
     // @ts-ignore
     // onClickNumberOfPlayers();
-    router.push("/NumberRandomizer");
+    // router.push("/NumberRandomizer");
     console.log("you clicked handleClick = ", event.target.value);
     console.log("inputs on click is = ", inputs);
   };
 
-  const updateInputs = () => {
-    setPlayers((previousState) => {
-      return { ...previousState };
-    });
-  };
 
   // @ts-ignore
   // console.log(" onClickNumberOfPlayers = ", onClickNumberOfPlayers());
@@ -124,13 +116,13 @@ const Home: NextPage = () => {
             ></input>
           </form>
           <button type="submit" value={numOfPlayers} onClick={handleClick}>
-            SUBMIT
+            Add Player
           </button>
 
           {/* 
       //@ts-ignore */}
-          <PlayerContextProvider value={inputs}>
-            {/* {players.length ? <div>{addInputs()}</div> : null} */}
+         
+            {players.length ? <div>{addInputs()}</div> : null}
             {/* 
       //@ts-ignore */}
             {/* <NumberRandomizer inputs={inputs} /> */}
@@ -139,7 +131,6 @@ const Home: NextPage = () => {
             {/* <div>{inputs}</div> */}
             {/* 
       //@ts-ignore */}
-          </PlayerContextProvider>
         </main>
       </div>
     </>
