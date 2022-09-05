@@ -40,3 +40,9 @@
 ### 09/02/2022
 
 - I will try using react-router useHistory or Next useRouter to maybe be able to move the input result to the other page. If these attempts fail, I will just have the generated inputs remain on the same page and then start working on number randomizing and adding game data.
+
+### 09/04/2022
+
+- I am restarting from the beginning. I am going to approach the player input differently then I originally intended to. I am going to start building the back end and worry about the player names and the "randomizer" after I have the game data ready.
+
+- Tomorrow I will set up MongoDB and begin creating game data and class data.
