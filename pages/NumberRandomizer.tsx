@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState, createContext, useContext, useRef } from "react";
-// import { InputContext } from "./PlayerContext";
-// import { AddInputsContext } from "./PlayerContext";
+
 
 const Wrapper = styled.main`
   display: flex;

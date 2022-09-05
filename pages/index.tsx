@@ -12,11 +12,6 @@ const Home: NextPage = () => {
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [players, setPlayers] = useState(prevNumOfPlayers);
 
-  //@ts-ignore
-  // useEffect((): any => {
-  //   prevNumOfPlayers.current = numOfPlayersInput;
-  // }, [numOfPlayersInput]);
-
   const PlayerCountInput = (props: any) => {
     return (
       <>
@@ -26,20 +21,14 @@ const Home: NextPage = () => {
   };
 
   const addInputs = (): any => {
-    // @ts-ignore
-    // const players = prevNumOfPlayers.current.value;
     const playerInputs = players.map((persons: any, index: any): any => (
       <PlayerCountInput name="newInputs" key={persons.toString()} id={persons.id} type="text" />
-      // <div>{persons}</div>
-      // <div>{index}</div>
-      // <div>{index.key}</div>
     ));
 
     return <div>{playerInputs}</div>;
   };
 
   const handleClick = () => {
-    // prevNumOfPlayers.current.value;
     console.log(prevNumOfPlayers.current.value);
     const numOfPlayers = prevNumOfPlayers.current.value;
     console.log("START of setNumOfPlayers");
@@ -56,17 +45,7 @@ const Home: NextPage = () => {
   };
 
   // @ts-ignore
-  // console.log(" onClickNumberOfPlayers = ", onClickNumberOfPlayers());
-  // @ts-ignore
-  // console.log("numOfPLayers = ", numOfPlayers);
-  // @ts-ignore
-  // const inputs = useState(0);
-  // const inputs = addInputs();
-  // console.log("updateInputs is =", updateInputs);
-  // @ts-ignore
   const inputs = players.length ? <div>{addInputs(prevNumOfPlayers.current)}</div> : null;
-  // console.log("inputs is = ", inputs);
-  // console.log("players is = ", players);
 
   return (
     <>
@@ -99,18 +78,7 @@ const Home: NextPage = () => {
             Add Player
           </button>
 
-          {/* 
-      //@ts-ignore */}
-
-          {/* {players.length ? <div>{addInputs()}</div> : null} */}
-          {/* 
-      //@ts-ignore */}
-          {/* <NumberRandomizer inputs={inputs} /> */}
-          {/* {prevNumOfPlayers.current} */}
-
           <div>{inputs}</div>
-          {/* 
-      //@ts-ignore */}
         </main>
       </div>
     </>
