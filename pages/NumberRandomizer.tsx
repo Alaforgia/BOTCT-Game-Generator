@@ -36,7 +36,7 @@ const Output = styled.h4``;
 
 function NumberRandomizer() {
   //@ts-ignore
-  const inputs: any = useContext(InputContext);
+  // const inputs: any = useContext(InputContext);
   // const addInputs: any = useContext(AddInputsContext);
   // const inputs: any = useContext(StoreContext);
   // console.log(PlayerContext);
@@ -113,7 +113,7 @@ function NumberRandomizer() {
   //   ));
   // };
   // const inputs =
-  console.log("INPUTS is =", inputs);
+  // console.log("INPUTS is =", inputs);
   // console.log("InputContext is =", InputContext);
   // console.log("addInputs is = ", addInputs);
   // console.log("AddInputsContext is =", AddInputsContext);
@@ -155,8 +155,8 @@ function NumberRandomizer() {
           {/* <AddInputsContext /> */}
           {/* {addInputs} */}
           {/* <InputContextProvider /> */}
-          {players.length ? <div>{inputs}</div> : null}
-          {inputs}
+          {/* {players.length ? <div>{inputs}</div> : null}
+          {inputs} */}
         </Wrapper>
       </div>
     </>

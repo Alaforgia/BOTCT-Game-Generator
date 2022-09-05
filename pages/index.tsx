@@ -6,75 +6,54 @@ import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import NumberRandomizer from "./NumberRandomizer";
 
-
-
-
 const Home: NextPage = () => {
   const router = useRouter();
-  const [numOfPlayers, setNumOfPlayers] = useState(0);
-  const [players, setPlayers] = useState([]);
-  // const [numOfPlayersInputs, setNumOfPlayersInputs] = useState(0);
-  // const numOfPlayersInput: any = useRef();
   const prevNumOfPlayers: any = useRef([]);
+  const [numOfPlayers, setNumOfPlayers] = useState(0);
+  const [players, setPlayers] = useState(prevNumOfPlayers);
+
   //@ts-ignore
   // useEffect((): any => {
   //   prevNumOfPlayers.current = numOfPlayersInput;
   // }, [numOfPlayersInput]);
 
-  useEffect((): any => {
-    prevNumOfPlayers.current = numOfPlayers;
-  }, [numOfPlayers]);
-  //
-  const onClickNumberOfPlayers = (e: any): any => {
-    const numOfPlayers = e.target.value;
+  const PlayerCountInput = (props: any) => {
+    return (
+      <>
+        <input ref={prevNumOfPlayers} value={props.value} type="text" name="players"></input>
+      </>
+    );
+  };
+
+  const addInputs = (): any => {
+    // @ts-ignore
+    // const players = prevNumOfPlayers.current.value;
+    const playerInputs = players.map((persons: any, index: any): any => (
+      <PlayerCountInput name="newInputs" key={persons.toString()} id={persons.id} type="text" />
+      // <div>{persons}</div>
+      // <div>{index}</div>
+      // <div>{index.key}</div>
+    ));
+
+    return <div>{playerInputs}</div>;
+  };
+
+  const handleClick = () => {
+    // prevNumOfPlayers.current.value;
+    console.log(prevNumOfPlayers.current.value);
+    const numOfPlayers = prevNumOfPlayers.current.value;
+    console.log("START of setNumOfPlayers");
 
     setNumOfPlayers(numOfPlayers);
     if (numOfPlayers > 0) {
-      const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
+      const generateInputs: any = Array.from(Array(Number(numOfPlayers)).keys());
       setPlayers(generateInputs);
     } else {
       setPlayers([]);
     }
-  };
-  const addInputs = (): any => {
-    // @ts-ignore
-    // const [numOfPlayersInputs, setNumOfPlayersInputs] = useContext(PlayerContext);
-    return players.map((persons: any, index: any): any => (
-      <input
-        name="newInputs"
-        key={index.id}
-        type="text"
-        // defaultValue={persons}
-        // onChange={onClickNumberOfPlayers}
-      ></input>
-    ));
-  };
-
-  const handleSubmit = (event: any): void => {
-    event.preventDefault();
-    // @ts-ignore
-    setNumOfPlayers(event.target.value);
-    // @ts-ignore
-    // onClickNumberOfPlayers();
-    // @ts-ignore
-    // updateInputs();
-    // addInputs();
-    console.log("you clicked Submit = ", event);
-  };
-  //
-
-  const handleClick = (event: any) => {
-    event.preventDefault();
-    // @ts-ignore
-    setNumOfPlayers(event.target.value);
-    // updateInputs();
-    // @ts-ignore
-    // onClickNumberOfPlayers();
+    console.log("END of setNumOfPlayers");
     // router.push("/NumberRandomizer");
-    console.log("you clicked handleClick = ", event.target.value);
-    console.log("inputs on click is = ", inputs);
   };
-
 
   // @ts-ignore
   // console.log(" onClickNumberOfPlayers = ", onClickNumberOfPlayers());
@@ -102,17 +81,17 @@ const Home: NextPage = () => {
           <h1>
             Welcome to <a href="https://bloodontheclocktower.com/">Blood On The Clock Tower</a> Companion!
           </h1>
-          <form onSubmit={handleSubmit}>
+          <form>
             <input
               type="text"
               // defaultValue={numOfPlayers}
               // ref={numOfPlayersInput}
-              value={numOfPlayers}
+              // value={numOfPlayers}
               // onChange={(e) =>
               //   //@ts-ignore
               //   setNumOfPlayers(e.target.value)
               // }
-              onChange={onClickNumberOfPlayers}
+              // onChange={onClickNumberOfPlayers}
             ></input>
           </form>
           <button type="submit" value={numOfPlayers} onClick={handleClick}>
@@ -121,15 +100,15 @@ const Home: NextPage = () => {
 
           {/* 
       //@ts-ignore */}
-         
-            {players.length ? <div>{addInputs()}</div> : null}
-            {/* 
-      //@ts-ignore */}
-            {/* <NumberRandomizer inputs={inputs} /> */}
-            {/* {prevNumOfPlayers.current} */}
 
-            {/* <div>{inputs}</div> */}
-            {/* 
+          {players.length ? <div>{addInputs()}</div> : null}
+          {/* 
+      //@ts-ignore */}
+          {/* <NumberRandomizer inputs={inputs} /> */}
+          {/* {prevNumOfPlayers.current} */}
+
+          <div>{inputs}</div>
+          {/* 
       //@ts-ignore */}
         </main>
       </div>
