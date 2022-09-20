@@ -1929,10 +1929,10 @@
     "@types/whatwg-url" "^8.2.1"
     "whatwg-url" "^11.0.0"
 
-"mongodb@^4.9.1":
-  "integrity" "sha512-ZhgI/qBf84fD7sI4waZBoLBNJYPQN5IOC++SBCiPiyhzpNKOxN/fi0tBHvH2dEC42HXtNEbFB0zmNz4+oVtorQ=="
-  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.9.1.tgz"
-  "version" "4.9.1"
+"mongodb@^4.10.0":
+  "integrity" "sha512-My2QxLTw0Cc1O9gih0mz4mqo145Jq4rLAQx0Glk/Ha9iYBzYpt4I2QFNRIh35uNFNfe8KFQcdwY1/HKxXBkinw=="
+  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.10.0.tgz"
+  "version" "4.10.0"
   dependencies:
     "bson" "^4.7.0"
     "denque" "^2.1.0"
