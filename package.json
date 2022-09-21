@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "node server/server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "mongodb": "^4.10.0",
     "next": "12.2.5",
