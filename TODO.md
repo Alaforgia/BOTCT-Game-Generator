@@ -46,3 +46,6 @@
 - I am restarting from the beginning. I am going to approach the player input differently then I originally intended to. I am going to start building the back end and worry about the player names and the "randomizer" after I have the game data ready.
 
 - Tomorrow I will set up MongoDB and begin creating game data and class data.
+
+### 09/20/2002
+- Need to get MongoDB connected to express and Next. Difficulty blending all three technologies. Mongo server is created, once everything connects w/o errors then I can begin adding game data.
