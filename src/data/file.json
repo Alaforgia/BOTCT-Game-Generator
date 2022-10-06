@@ -1,6 +1,16 @@
-[
-  {
-    "game_type_id": 1,
-    "game_type_name": "Trouble Brewing"
+
+  {"_id": 1,
+  "name": "Trouble Brewing",
+  "classes": [
+    {
+      "class_id": 1,
+      "class_name": "Washerwoman",
+      "class_ability": "You start knowing that 1 of 2 players is a particular Townsfolk."
+    },
+    {
+      "class_id": 2,
+      "class_name": "Monk",
+      "class_ability": "Each night*, choose a player (not yourself); they are safe from the Demon tonight."
+    }
+  ]
   }
-]
