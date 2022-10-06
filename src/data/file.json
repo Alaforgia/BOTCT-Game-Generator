@@ -1,10 +1,9 @@
-
 {
   "_id": 1,
   "name": "Trouble Brewing",
   "classes": [
     {
-      "TownsFolk": [
+      "Townsfolk": [
         {
           "class_id": 1,
           "class_name": "Washerwoman",
@@ -14,6 +13,112 @@
           "class_id": 2,
           "class_name": "Monk",
           "class_ability": "Each night*, choose a player (not yourself); they are safe from the Demon tonight."
+        },
+        {
+          "class_id": 3,
+          "class_name": "Librarian",
+          "class_ability": "You start knowing that 1 of 2 players is a particular Outsider (Or that zero are in play)"
+        },
+        {
+          "class_id": 4,
+          "class_name": "Ravenkeeper",
+          "class_ability": "If you die at night, you are woken to choose a player: ypu learn their character."
+        },
+        {
+          "class_id": 5,
+          "class_name": "Investigator",
+          "class_ability": "You start knowing that 1 of 2 players is a particular minion."
+        },
+        {
+          "class_id": 6,
+          "class_name": "Virgin",
+          "class_ability": "The 1st time you are nominated, if the nominator is a Townsfolk, they are executed immediately."
+        },
+        {
+          "class_id": 7,
+          "class_name": "Chef",
+          "class_ability": "You start knowing how many pairs of evil players there are."
+        },
+        {
+          "class_id": 8,
+          "class_name": "Slayer",
+          "class_ability": "Once per game, during the day, publicly choose a player: if they are the Demon, they die"
+        },
+        {
+          "class_id": 9,
+          "class_name": "Empath",
+          "class_ability": "Each night, you learn how many of your 2 alive neighbors are evil."
+        },
+        {
+          "class_id": 10,
+          "class_name": "Soldier",
+          "class_ability": "You are safe from the Demon"
+        },
+        {
+          "class_id": 11,
+          "class_name": "Fortune Teller",
+          "class_ability": "Each night, choose 2 players: you learn if either is a Demon. There is a good player that registers as a Demon to you."
+        },
+        {
+          "class_id": 12,
+          "class_name": "Undertaker",
+          "class_ability": "Each night*, you learn which character died by execution today"
+        },
+        {
+          "class_id": 13,
+          "class_name": "Mayor",
+          "class_ability": "If only 3 players live & no execution occurs, your team wins. If you die at night, another player might die instead."
+        }
+      ],
+      "Outsiders": [
+        {
+          "class_id": 14,
+          "class_name": "Butler",
+          "class_ability": "Each night, choose a player (not yourself): tomorrow, you may only vote if they are voting too."
+        },
+        {
+          "class_id": 15,
+          "class_name": "Recluse",
+          "class_ability": "You might register as evil & as a Minion or Demon even if dead."
+        },
+        {
+          "class_id": 16,
+          "class_name": "Drunk",
+          "class_ability": "You do not know you are the Drunk. You think you are a Townsfolk character, but you are not"
+        },
+        {
+          "class_id": 17,
+          "class_name": "Saint",
+          "class_ability": "If you die by execution, you team loses"
+        }
+      ],
+      "Minions": [
+        {
+          "class_id": 18,
+          "class_name": "Poisoner",
+          "class_ability": "Each night, choose a player, they are poisoned tonight and tomorrow day"
+        },
+        {
+          "class_id": 19,
+          "class_name": "Baron",
+          "class_ability": "There are extra Outsiders in play. [+2 Outsiders]"
+        },
+        {
+          "class_id": 20,
+          "class_name": "Spy",
+          "class_ability": "Each night, you see the Grimoire. You might register as a good & as a Townsfolk or Outsider, even if dead"
+        },
+        {
+          "class_id": 21,
+          "class_name": "Scarlet Woman",
+          "class_ability": "If there are 5 or more players alive & the Demon dies, you become the Demon. (Travellers don't count.)"
+        }
+      ],
+      "Demons": [
+        {
+          "class_id": 22,
+          "class_name": "Imp",
+          "class_ability": "Each night*, choose a player, they die. If you kill youself this was, a Minion becomes the imp."
         }
       ]
     }
