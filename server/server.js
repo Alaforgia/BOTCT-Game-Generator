@@ -1,40 +1,22 @@
 const express = require("express");
+const { MongoDBNamespace } = require("mongodb");
 const next = require("next");
 const mongo = require("mongodb").MongoClient;
+const { MongoClient } = require("mongodb");
 
-const uri = process.env.MONGODB_URI;
-const port = process.env.PORT || 3000;
-const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
-const cors = require("cors");
-require("dotenv").config({ path: "./config.env" });
+const connectionString = process.env.MONGODB_URI;
 
-// import clientPromise from "./db/conn.js";
-
-// app.use(cors());
-
-// app.use(require("./routes/record"));
-// get driver connection
-const dbo = require("./db/conn");
-
-app.prepare().then(() => {
-  const server = express();
-
-  server.all("*", (req, res) => {
-    return handle(req, res);
-  });
-
-  server.listen(port, (err) => {
-    // clientPromise(function (err) {
-    //   if (err) throw err;
-    //   console.log(`> MONGO READY ON ${port}`);
-    // });
-    dbo.connectToServer(function (err) {
+nextApp.prepare().then(() => {
+  // express code here
+  const app = express()
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use('/api', require('./routes/record')) 
+  app.get('*', (req,res) => {
+      return handle(req,res) // for all the react stuff
+  })
+  app.listen(PORT, err => {
       if (err) throw err;
-      console.log(`> MONGO READY ON ${port}`);
-    });
-    if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
-  });
-});
+      console.log(`ready at http://localhost:${PORT}`)
+  })
+})
