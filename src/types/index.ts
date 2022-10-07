@@ -1,7 +1,7 @@
 export interface IGameTypes {
   _id: number;
   name: string;
-  classes: string | IClassData;
+  classes: IClassData[];
 }
 
 export interface IClassData {
