@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import NumberRandomizer from "./NumberRandomizer";
+import GameSelection from "../src/components/GameSelection";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -81,6 +82,7 @@ const Home: NextPage = () => {
           <div>{inputs}</div>
         </main>
       </div>
+      <GameSelection />
     </>
   );
 };
