@@ -7,11 +7,13 @@ export default function GameSelection({ game_types }: any): any {
     <>
       <div>
         <h2>Select Game Type</h2>
-        <div>{game_types.map((type: any)=>{
-          <li>
-            <h3>{type.name}</h3>
-          </li>
-        })}</div>
+        <div>
+          {game_types.map((type: any) => {
+            <li>
+              <h3>{type.name}</h3>
+            </li>;
+          })}
+        </div>
       </div>
     </>
   );
@@ -28,5 +30,6 @@ export async function getServerSideProps() {
     };
   } catch (e) {
     console.error(e);
+    console.log("MongoDB data fetch not working");
   }
 }
