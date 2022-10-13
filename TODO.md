@@ -1,4 +1,4 @@
-## To Do List log for BOTCT Companion App
+## To Do Log for BOTCT Companion App
 
 ### <time datetime="8/14/2022">8/14/2022</time>
 
@@ -49,3 +49,6 @@
 
 ### 09/20/2002
 - Need to get MongoDB connected to express and Next. Difficulty blending all three technologies. Mongo server is created, once everything connects w/o errors then I can begin adding game data.
+
+### 10/12/2002
+- Connecting mongo and express in a Next app is proving to be challenging for my skill level. I am going to try and rewriting the server code again and see if I can get it working. I cannot seem to find a blog or a post that helps in the entirety of what I need, just fragments, that don't seem to want to go together even though they are related in some way. 
