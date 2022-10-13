@@ -16,13 +16,15 @@ const app = express();
 // const handle = app.getRequestHandler();
 
 const dbo = require("./db/conn");
+console.log("dbo is =", dbo);
 app.use(express.json());
 let mainRoutes = require("./routes/record");
 app.use(mainRoutes);
 
 app.get("/:id", (req, res) => {
-  console.log(req);
-  res.send("what is this params =", req.params);
+  res.status(500).send(req.body);
+  console.log("req.body = ", req.body);
+  console.log("req.params = ", req.params);
   const queryParams = req.params.id;
   app.render(queryParams);
   // return handle(req, res);

@@ -40,21 +40,22 @@
 
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
-const connectionString = process.env.MONGODB_URI;
-const client = new MongoClient("mongodb://localhost:3000/connectionString", connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  // tls: true,
-});
 
 let dbConnection;
 
 module.exports = {
   connectToServer: function (err) {
+    const connectionString = process.env.MONGO_URI;
+    const client = new MongoClient(`mongodb://localhost:3000/${connectionString}`, connectionString, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      // tls: true,
+    });
+    console.log("client is =", client);
     client.connect(err, (db) => {
       // Verify we got a good "db" object
 
-      dbConnection = db.db("game_data").collection("game_types");
+      dbConnection = db.db("game_data");
       console.log("Successfully connected to MongoDB.");
 
       // return err;

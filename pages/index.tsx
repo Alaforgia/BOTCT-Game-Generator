@@ -22,11 +22,11 @@ const Home: NextPage = () => {
   };
 
   const addInputs = (): any => {
-    // const playerInputs = players.map((persons: any, index: any): any => (
-    //   <PlayerCountInput name="newInputs" key={persons.toString()} id={persons.id} type="text" />
-    // ));
+    const playerInputs = players.map((persons: any, index: any): any => (
+      <PlayerCountInput name="newInputs" key={persons.toString()} id={persons.id} type="text" />
+    ));
 
-    // return <div>{playerInputs}</div>;
+    return <div>{playerInputs}</div>;
   };
 
   const handleClick = () => {
