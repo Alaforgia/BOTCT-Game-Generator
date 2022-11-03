@@ -13,6 +13,9 @@ const Home: NextPage = () => {
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [players, setPlayers] = useState(prevNumOfPlayers);
 
+  // console.log("is this working?", );
+  
+
   const PlayerCountInput = (props: any) => {
     return (
       <>

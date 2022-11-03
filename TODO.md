@@ -47,8 +47,11 @@
 
 - Tomorrow I will set up MongoDB and begin creating game data and class data.
 
-### 09/20/2002
+### 09/20/2022
 - Need to get MongoDB connected to express and Next. Difficulty blending all three technologies. Mongo server is created, once everything connects w/o errors then I can begin adding game data.
 
-### 10/12/2002
+### 10/12/2022
 - Connecting mongo and express in a Next app is proving to be challenging for my skill level. I am going to try and rewriting the server code again and see if I can get it working. I cannot seem to find a blog or a post that helps in the entirety of what I need, just fragments, that don't seem to want to go together even though they are related in some way. 
+
+### 11/02/2022
+- I have a get working. I still need to get my game_data from Mongo, but this is a good start. I am going to add the data request in my api folder and then use SSProps to see if I can get something to render. I will keep on attempting this, but at some point I will probably need to remove express and just use Mongo with Next.

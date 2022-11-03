@@ -1,64 +1,23 @@
-// import { MongoClient } from "mongodb";
-// import { env } from "process";
-
-// declare global {
-//   var _mongoClientPromise: Promise<MongoClient>;
-// }
-
-// if (!process.env.MONGODB_URI) {
-//   throw new Error('Invalid environment variable: "MONGODB_URI"');
-// }
-
-// const uri = process.env.MONGODB_URI;
-// const options = {};
-
-// let client;
-// let clientPromise: Promise<MongoClient>;
-
-// if (!process.env.MONGODB_URI) {
-//   console.log("Connection is working");
-//   throw new Error("Please add your Mongo URI to .env.local");
-// }
-
-// if (process.env.NODE_ENV === "development") {
-//   // In development mode, use a global variable so that the value
-//   // is preserved across module reloads caused by HMR (Hot Module Replacement).
-//   if (!global._mongoClientPromise) {
-//     client = new MongoClient(uri, options);
-//     global._mongoClientPromise = client.connect();
-//   }
-//   clientPromise = global._mongoClientPromise;
-// } else {
-//   // In production mode, it's best to not use a global variable.
-//   client = new MongoClient(uri, options);
-//   clientPromise = client.connect();
-// }
-
-// // Export a module-scoped MongoClient promise. By doing this in a
-// // separate module, the client can be shared across functions.
-// export default clientPromise;
-
-require("dotenv").config();
 const { MongoClient } = require("mongodb");
+const connectionString = process.env.ATLAS_URI;
+const client = new MongoClient(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 let dbConnection;
 
 module.exports = {
-  connectToServer: function (err) {
-    const connectionString = process.env.MONGO_URI;
-    const client = new MongoClient(`mongodb://localhost:3000/${connectionString}`, connectionString, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      // tls: true,
-    });
-    console.log("client is =", client);
-    client.connect(err, (db) => {
-      // Verify we got a good "db" object
+  connectToServer: function (callback) {
+    client.on(function (err, db) {
+      if (err || !db) {
+        return callback(err);
+      }
 
-      dbConnection = db.db("game_data");
-      console.log("Successfully connected to MongoDB.");
+      dbConnection = db.db("game_types");
+      console.log("Successfully connected to MongoDB.", dbConnection);
 
-      // return err;
+      return callback();
     });
   },
 
@@ -66,6 +25,3 @@ module.exports = {
     return dbConnection;
   },
 };
-
-// eslint-disable-next-line import/no-anonymous-default-export
-// export default {};
