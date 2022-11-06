@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { InputTheme } from "styled-components";
 
 const MyInput: InputTheme = {
