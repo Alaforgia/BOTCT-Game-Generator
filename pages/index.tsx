@@ -6,15 +6,15 @@ import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import NumberRandomizer from "./NumberRandomizer";
 import GameSelection from "../src/components/GameSelection";
+import clientPromise from "../server/mongodb";
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ games }: any) => {
   const router = useRouter();
   const prevNumOfPlayers: any = useRef([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [players, setPlayers] = useState(prevNumOfPlayers);
 
   // console.log("is this working?", );
-  
 
   const PlayerCountInput = (props: any) => {
     return (
@@ -83,11 +83,43 @@ const Home: NextPage = () => {
           </button>
 
           <div>{inputs}</div>
+          {games.name}
+          <ul>
+            {games.map((game: any) => {
+              <li>
+                <h3>{game.name}</h3>
+                <h5>{game.classes}</h5>
+              </li>;
+            })}
+          </ul>
         </main>
       </div>
+      <ul>
+        {games.map((game: any) => {
+          <li>
+            <h3>{game.name}</h3>
+            <h5>{game.classes}</h5>
+          </li>;
+        })}
+      </ul>
       <GameSelection />
     </>
   );
 };
 
 export default Home;
+
+export async function getServerSideProps() {
+  try {
+    const client = await clientPromise;
+    const db = client.db("game_data");
+
+    const games = await db?.collection("game_types").find({}).sort({ name: 1 }).toArray();
+
+    return {
+      props: { games: JSON.parse(JSON.stringify(games)) },
+    };
+  } catch (e) {
+    console.error(e);
+  }
+}
