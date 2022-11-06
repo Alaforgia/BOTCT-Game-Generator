@@ -5,14 +5,19 @@ export default function Games({ games }: any) {
     <>
       <div>
         <h1>Trouble Brewing</h1>
+        {/* {games?.classes} */}
         <ul>
           <h3>
             {games?.map((game: any, index: any) => {
-              <li key={index}>
-                {game?._id}
-                <h3>{game?.name}</h3>
-                <h4>{game?.class_id}</h4>
-              </li>;
+              console.log("games is > ", games);
+              return (
+                <>
+                  <li key={index}>
+                    <h3>{game?.name}</h3>
+                    {/* <h4>[{game?.classes}]</h4> */}
+                  </li>
+                </>
+              );
             })}
           </h3>
         </ul>

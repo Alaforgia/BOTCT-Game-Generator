@@ -85,21 +85,25 @@ const Home: NextPage = ({ games }: any) => {
           <div>{inputs}</div>
           {games.name}
           <ul>
-            {games.map((game: any) => {
-              <li>
-                <h3>{game.name}</h3>
-                <h5>{game.classes}</h5>
-              </li>;
+            {games.map((game: any, index: any) => {
+              return (
+                <li key={index}>
+                  <h3>{game.name}</h3>
+                  {/* <h5>{game.classes}</h5> */}
+                </li>
+              );
             })}
           </ul>
         </main>
       </div>
       <ul>
-        {games.map((game: any) => {
-          <li>
-            <h3>{game.name}</h3>
-            <h5>{game.classes}</h5>
-          </li>;
+        {games.map((game: any, index: any) => {
+          return (
+            <li key={index}>
+              <h3>{game.name}</h3>
+              {/* <h5>{game.classes}</h5> */}
+            </li>
+          );
         })}
       </ul>
       <GameSelection />
