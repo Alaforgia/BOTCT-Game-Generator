@@ -1,27 +1,15 @@
-const { MongoClient } = require("mongodb");
-const connectionString = process.env.ATLAS_URI;
-const client = new MongoClient(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// import { MongoClient } from "mongodb";
 
-let dbConnection;
+// const uri = process.env.MONGODB_URI;
 
-module.exports = {
-  connectToServer: function (callback) {
-    client.on(function (err, db) {
-      if (err || !db) {
-        return callback(err);
-      }
+// const client = new MongoClient(uri);
 
-      dbConnection = db.db("game_types");
-      console.log("Successfully connected to MongoDB.", dbConnection);
+// async function start() {
+//   await client.connect();
+//   console.log("Connected");
+//   module.exports = client.db();
+//   const app = require("../routes/record");
+//   app.listen(3000);
+// }
 
-      return callback();
-    });
-  },
-
-  getDb: function () {
-    return dbConnection;
-  },
-};
+// start();
