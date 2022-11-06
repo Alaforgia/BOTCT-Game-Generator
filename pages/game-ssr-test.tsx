@@ -5,25 +5,22 @@ export default function Games({ games, classes }: any) {
     <>
       <div>
         <ul>
-          <h3>
-            {games?.map((game: any, classes: any) => {
-              console.log("games is > ", game._id);
-              console.log("classes is > ", classes);
-
-              return (
-                <>
-                  <h1>{game?.name}</h1>
-                  <li key={game._id}>
-                    {/* <h4>{game?.classes?.class_name}</h4> */}
-                    <h4>{game?._id}</h4>
-                    {Object.keys(game.classes[0]).map((i: any) => {
-                      return <div key={i}>{i}</div>;
-                    })}
-                  </li>
-                </>
-              );
-            })}
-          </h3>
+          {games?.map((game: any, classes: any) => {
+            console.log("games is > ", game.classes[0].Townsfolk[0]);
+            console.log("classes is > ", classes);
+            return (
+              <>
+                <h1>{game?.name}</h1>
+                <li key={game._id}>
+                  <h2>{game?.classes[0]?.Townsfolk[0].class_name}</h2>
+                  <h4>{game?.classes[0]?.Townsfolk[0].class_ability}</h4>
+                  {Object.keys(game.classes[0].Townsfolk[0]).map((i: any) => {
+                    return <div key={i}>{i}</div>;
+                  })}
+                </li>
+              </>
+            );
+          })}
         </ul>
       </div>
     </>
