@@ -6,18 +6,29 @@ export default function Games({ games, classes }: any) {
       <div>
         <ul>
           {games?.map((game: any, classes: any) => {
-            console.log("games is > ", game.classes[0].Townsfolk[0]);
+            console.log("games is > ", game.classes[0].Townsfolk);
             console.log("classes is > ", classes);
             return (
               <>
                 <h1>{game?.name}</h1>
-                <li key={game._id}>
-                  <h2>{game?.classes[0]?.Townsfolk[0].class_name}</h2>
+                <div key={game._id}>
+                  {/* Washerwoman */}
+                  <h3>{game?.classes[0]?.Townsfolk[0].class_name}</h3>
                   <h4>{game?.classes[0]?.Townsfolk[0].class_ability}</h4>
-                  {Object.keys(game.classes[0].Townsfolk[0]).map((i: any) => {
+                  {/* Monk */}
+                  <h3>{game?.classes[0]?.Townsfolk[1].class_name}</h3>
+                  <h4>{game?.classes[0]?.Townsfolk[1].class_ability}</h4>
+                  {/* Librarian */}
+                  <h3>{game?.classes[0]?.Townsfolk[2].class_name}</h3>
+                  <h4>{game?.classes[0]?.Townsfolk[2].class_ability}</h4>
+                  {/* Ravenkeeper */}
+                  <h3>{game?.classes[0]?.Townsfolk[3].class_name}</h3>
+                  <h4>{game?.classes[0]?.Townsfolk[3].class_ability}</h4>
+                  {/* Figure out how to map every Class in the data to avoid hard coding everything */}
+                  {/* {Object.keys(game.classes[0].Townsfolk[0]).map((i: any) => {
                     return <div key={i}>{i}</div>;
-                  })}
-                </li>
+                  })} */}
+                </div>
               </>
             );
           })}
