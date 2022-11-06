@@ -14,7 +14,7 @@ export default function Games({ games }: any) {
                 <>
                   <li key={index}>
                     <h3>{game?.name}</h3>
-                    {/* <h4>[{game?.classes}]</h4> */}
+                    <h4>{game?.classes.Townsfolk}</h4>
                   </li>
                 </>
               );
