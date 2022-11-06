@@ -1,5 +1,5 @@
 import React from "react";
-import clientPromise from "../../server/db/conn";
+// import clientPromise from "../../server/mongodb.ts";
 // import { IGameData } from "../types";
 
 export default function GameSelection({ game_types }: any): any {
