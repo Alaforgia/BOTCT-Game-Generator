@@ -1,20 +1,24 @@
 import clientPromise from "../server/mongodb";
 
-export default function Games({ games }: any) {
+export default function Games({ games, classes }: any) {
   return (
     <>
       <div>
-        <h1>Trouble Brewing</h1>
-        {/* {games?.classes} */}
         <ul>
           <h3>
-            {games?.map((game: any, index: any) => {
-              console.log("games is > ", games);
+            {games?.map((game: any, classes: any) => {
+              console.log("games is > ", game._id);
+              console.log("classes is > ", classes);
+
               return (
                 <>
-                  <li key={index}>
-                    <h3>{game?.name}</h3>
-                    <h4>{game?.classes.Townsfolk}</h4>
+                  <h1>{game?.name}</h1>
+                  <li key={game._id}>
+                    {/* <h4>{game?.classes?.class_name}</h4> */}
+                    <h4>{game?._id}</h4>
+                    {Object.keys(game.classes[0]).map((i: any) => {
+                      return <div key={i}>{i}</div>;
+                    })}
                   </li>
                 </>
               );
