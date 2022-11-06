@@ -6,8 +6,10 @@ export default async function handler(req: any, res: any) {
   try {
     const client = await clientPromise;
     const db = client.db("game_data");
+    console.log("req.body > ", req.body);
+    console.log("req.params > ", req.params);
 
-    const games = await db?.collection("game_types").find({}).sort({}).toArray();
+    const games = await db?.collection("game_types").find({}).toArray();
 
     res.json(games);
   } catch (e) {
