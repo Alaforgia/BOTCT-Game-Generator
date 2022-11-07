@@ -17,20 +17,38 @@ export default function Games({ games, classes }: any) {
 
             return (
               <>
-                <h1>{game?.name}</h1>
                 <div key={game._id}>
+                  <h1>{game?.name}</h1>
+
+                  {Object.entries(game?.classes[0]).map((game_class: any) => {
+                    console.log("game_class is >>> ", game_class);
+
+                    return (
+                      <>
+                        <h3>{game_class[0]}</h3>
+                        {game_class[1].map((sub_class: any) => {
+                          return (
+                            <>
+                              <h3>{sub_class?.class_name}</h3>
+                              <h3>{sub_class?.class_ability}</h3>
+                            </>
+                          );
+                        })}
+                      </>
+                    );
+                  })}
                   {/* Washerwoman */}
-                  <h3>{game?.classes[0]?.Townsfolk[0].class_name}</h3>
-                  <h4>{game?.classes[0]?.Townsfolk[0].class_ability}</h4>
+                  {/* <h3>{game?.classes[0]?.Townsfolk[0].class_name}</h3> */}
+                  {/* <h4>{game?.classes[0]?.Townsfolk[0].class_ability}</h4> */}
                   {/* Monk */}
-                  <h3>{game?.classes[0]?.Townsfolk[1].class_name}</h3>
-                  <h4>{game?.classes[0]?.Townsfolk[1].class_ability}</h4>
+                  {/* <h3>{game?.classes[0]?.Townsfolk[1].class_name}</h3> */}
+                  {/* <h4>{game?.classes[0]?.Townsfolk[1].class_ability}</h4> */}
                   {/* Librarian */}
-                  <h3>{game?.classes[0]?.Townsfolk[2].class_name}</h3>
-                  <h4>{game?.classes[0]?.Townsfolk[2].class_ability}</h4>
+                  {/* <h4>{game?.classes[0]?.Townsfolk[2].class_ability}</h4> */}
+                  {/* <h3>{game?.classes[0]?.Townsfolk[2].class_name}</h3> */}
                   {/* Ravenkeeper */}
-                  <h3>{game?.classes[0]?.Townsfolk[3].class_name}</h3>
-                  <h4>{game?.classes[0]?.Townsfolk[3].class_ability}</h4>
+                  {/* <h3>{game?.classes[0]?.Townsfolk[3].class_name}</h3>
+                  <h4>{game?.classes[0]?.Townsfolk[3].class_ability}</h4> */}
                   {/* Figure out how to map every Class in the data to avoid hard coding everything */}
                   {/* <div key={i}>{game?.classes}</div> */}
                 </div>
