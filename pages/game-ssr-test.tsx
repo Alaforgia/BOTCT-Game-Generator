@@ -6,23 +6,11 @@ export default function Games({ games, classes }: any) {
       <div>
         <ul>
           {games?.map((game: any, classes: any, i: any) => {
-            // const allClasses: any = game?.classes[0]?.Townsfolk[0].flat();
-
-            // console.log("classes is > ", classes);
-            console.log(">>", game.classes[0].Townsfolk);
-            //@ts-ignore
-            for (const key of games) {
-              console.log("keys is > ", key);
-            }
-
             return (
               <>
                 <div key={game._id}>
                   <h1>{game?.name}</h1>
-
                   {Object.entries(game?.classes[0]).map((game_class: any) => {
-                    console.log("game_class is >>> ", game_class);
-
                     return (
                       <>
                         <h3>{game_class[0]}</h3>
@@ -52,7 +40,6 @@ export default function Games({ games, classes }: any) {
                   {/* Figure out how to map every Class in the data to avoid hard coding everything */}
                   {/* <div key={i}>{game?.classes}</div> */}
                 </div>
-                {/* <div key={i}>{allClasses}</div> */}
               </>
             );
           })}
