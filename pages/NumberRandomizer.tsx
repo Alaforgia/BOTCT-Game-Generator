@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState, createContext, useContext, useRef } from "react";
-
+import type { NextPage } from "next";
+import styles from "../styles/Home.module.css";
+import { useRouter } from "next/router";
+import GameSelection from "../src/components/GameSelection";
+import clientPromise from "../server/mongodb";
 
 const Wrapper = styled.main`
   display: flex;
@@ -34,141 +38,83 @@ const Output = styled.h4``;
 // const playerContext: any = createContext();
 
 function NumberRandomizer() {
-  //@ts-ignore
-  // const inputs: any = useContext(InputContext);
-  // const addInputs: any = useContext(AddInputsContext);
-  // const inputs: any = useContext(StoreContext);
-  // console.log(PlayerContext);
-  // console.log("StoreContext is = ", StoreContext);
-
-  const [num, setNum] = useState(0);
-  // const [newPlayers, setNewPlayers]: any = useState(PlayerContext);
-  const [players, setPlayers]: any = useState([]);
+  const router = useRouter();
+  const prevNumOfPlayers: any = useRef([]);
   const [numOfPlayers, setNumOfPlayers] = useState(0);
-  // const prevNumOfPlayers: any = useRef();
-  //@ts-ignore
-  // useEffect((): any => {}, []);
+  const [players, setPlayers] = useState(prevNumOfPlayers);
 
-  const randomNumber = (min: number, max: number) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  const PlayerCountInput = (props: any) => {
+    return (
+      <>
+        <input ref={prevNumOfPlayers} value={props.value} type="text" name="players"></input>
+      </>
+    );
   };
 
-  const numberButtonHandler = () => {
-    setNum(randomNumber(1, 10));
+  const addInputs = (): any => {
+    const playerInputs = players.map((persons: any, index: any): any => (
+      <PlayerCountInput name="newInputs" key={persons.toString()} id={persons.id} type="text" />
+    ));
+
+    return <div>{playerInputs}</div>;
   };
 
-  const handlePlayerSubmit = (event: any): void => {
-    // event.preventDefault();
-    // setPlayer(event.target.value);
-    // setPlayer((players: any) => [...players]);
-    // const value = event.target.value;
-    // setPlayer({
-    //   ...players,
-    //   [event.target.name]: value,
-    // });
+  const handleClick = () => {
+    console.log(prevNumOfPlayers.current.value);
+    const numOfPlayers = prevNumOfPlayers.current.value;
+    console.log("START of setNumOfPlayers");
+
+    setNumOfPlayers(numOfPlayers);
+    if (numOfPlayers > 0) {
+      const generateInputs: any = Array.from(Array(Number(numOfPlayers)).keys());
+      setPlayers(generateInputs);
+    } else {
+      setPlayers([]);
+    }
+    console.log("END of setNumOfPlayers");
+    // router.push("/NumberRandomizer");
   };
 
-  // const handleChange = (event: any) => {
-  //   // event.preventDefault();
-  //   const toArray = Object.values(players);
-  //   if (toArray === undefined || null) {
-  //     const values = Object.values(players);
-  //   } else {
-  //     console.log(players);
-  //   }
-  //   const arrayMap: any = toArray.forEach((element) => console.log(element));
-  //   const value = event.target.value;
-  //   setPlayer(arrayMap);
-  //   setPlayer(value);
+  const gameTypeClick = () => {
+    router.push("/ClassSelection/TroubleBrewingClasses");
+  };
 
-  //   console.log("handle change = ", arrayMap);
-  // };
-  // const toArray = Object.values(players);
-  // console.log("map =", toArray);
-
-  // console.log("what is this = ", typeof players);
-  const player: any = [];
-
-  // const onClickNumberOfPlayers = (e: any): any => {
-  //   const numOfPlayers = e.target.value;
-
-  //   setNumOfPlayers(numOfPlayers);
-  //   if (numOfPlayers > 0) {
-  //     const generateInputs: any = Array.from(Array(Number(e.target.value)).keys());
-  //     setPlayers(generateInputs);
-  //   } else {
-  //     setPlayers([]);
-  //   }
-  // };
-
-  // const addInputs = (): any => {
-  //   return players.map((persons: any): any => (
-  //     <input
-  //       name="inputs"
-  //       key={persons}
-  //       type="text"
-  //       // onChange={onClickNumberOfPlayers}
-  //     ></input>
-  //   ));
-  // };
-  // const inputs =
-  // console.log("INPUTS is =", inputs);
-  // console.log("InputContext is =", InputContext);
-  // console.log("addInputs is = ", addInputs);
-  // console.log("AddInputsContext is =", AddInputsContext);
+  // @ts-ignore
+  const inputs = players.length ? <div>{addInputs(prevNumOfPlayers.current)}</div> : null;
 
   return (
     <>
       <div>
-        <Wrapper>
-          {/* 
-    //@ts-ignore */}
-          <Forms>
-            {/* {`${inputs}`} */}
-            {/* {prevNumOfPlayers.current} */}
-          </Forms>
+        <main>
+          <h2>Add Players</h2>
+          <form>
+            <PlayerCountInput />
+          </form>
+          <button type="submit" value={numOfPlayers} onClick={handleClick}>
+            Add Player
+          </button>
 
-          {/* {inputs} */}
-          {/* {inputs.map((player: any, { inputs }: any): any => {
-            return (
-              <div key={inputs}>
-                <p>{inputs.inputs}</p>
-              </div>
-            );
-          })} */}
-          {/* <Forms onSubmit={handlePlayerSubmit}> */}
-          {/* <Input type="text" onChange={handleChange}></Input> */}
-          {/* </Forms> */}
-          {/* <input type="text" value={numOfPlayers} onChange={onClickNumberOfPlayers}></input> */}
-          {/* <Forms>{players.length ? <div>{inputs}</div> : null}</Forms> */}
-          {/* <Forms>{players.length ? <div>{inputs}</div> : null}</Forms> */}
-          {/* <Forms>{value}</Forms> */}
-          <Button onClick={() => numberButtonHandler()}>Create</Button>
-          <Output>
-            Number: {num} <br></br>
-            {/* Players: {players} */}
-            {/* {players.map((player: any, index: any): any => {
-            return <div key={player.id}>{players.player}</div>;
-          })} */}
-          </Output>
-          {/* <AddInputsContext /> */}
-          {/* {addInputs} */}
-          {/* <InputContextProvider /> */}
-          {/* {players.length ? <div>{inputs}</div> : null}
-          {inputs} */}
-        </Wrapper>
+          <div>{inputs}</div>
+        </main>
       </div>
+      <GameSelection />
     </>
   );
 }
 
 export default NumberRandomizer;
 
-// export default function ContextPageWrapper() {
-//   return (
-//     // @ts-ignore
-//       <NumberRandomizer />
-//     // <InputContextProvider>
-//     // {/* </InputContextProvider> */}
-//   );
-// }
+export async function getServerSideProps() {
+  try {
+    const client = await clientPromise;
+    const db = client.db("game_data");
+
+    const games = await db?.collection("game_types").find({}).sort({ name: 1 }).toArray();
+
+    return {
+      props: { games: JSON.parse(JSON.stringify(games)) },
+    };
+  } catch (e) {
+    console.error(e);
+  }
+}
