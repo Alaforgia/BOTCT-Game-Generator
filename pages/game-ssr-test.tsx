@@ -13,12 +13,12 @@ export default function Games({ games, classes }: any) {
                   {Object.entries(game?.classes[0]).map((game_class: any) => {
                     return (
                       <>
-                        <h3>{game_class[0]}</h3>
+                        <h2>{game_class[0]}</h2>
                         {game_class[1].map((sub_class: any) => {
                           return (
                             <>
-                              <h3>{sub_class?.class_name}</h3>
-                              <h3>{sub_class?.class_ability}</h3>
+                              <h4>{sub_class?.class_ability}</h4>
+                              <h4>{sub_class?.class_name}</h4>
                             </>
                           );
                         })}

@@ -10,46 +10,10 @@ import clientPromise from "../server/mongodb";
 
 const Home: NextPage = ({ games }: any) => {
   const router = useRouter();
-  const prevNumOfPlayers: any = useRef([]);
-  const [numOfPlayers, setNumOfPlayers] = useState(0);
-  const [players, setPlayers] = useState(prevNumOfPlayers);
 
-  // console.log("is this working?", );
-
-  const PlayerCountInput = (props: any) => {
-    return (
-      <>
-        <input ref={prevNumOfPlayers} value={props.value} type="text" name="players"></input>
-      </>
-    );
+  const gameTypeClick = () => {
+    router.push("/ClassSelection/TroubleBrewingClasses");
   };
-
-  const addInputs = (): any => {
-    const playerInputs = players.map((persons: any, index: any): any => (
-      <PlayerCountInput name="newInputs" key={persons.toString()} id={persons.id} type="text" />
-    ));
-
-    return <div>{playerInputs}</div>;
-  };
-
-  const handleClick = () => {
-    console.log(prevNumOfPlayers.current.value);
-    const numOfPlayers = prevNumOfPlayers.current.value;
-    console.log("START of setNumOfPlayers");
-
-    setNumOfPlayers(numOfPlayers);
-    if (numOfPlayers > 0) {
-      const generateInputs: any = Array.from(Array(Number(numOfPlayers)).keys());
-      setPlayers(generateInputs);
-    } else {
-      setPlayers([]);
-    }
-    console.log("END of setNumOfPlayers");
-    // router.push("/NumberRandomizer");
-  };
-
-  // @ts-ignore
-  const inputs = players.length ? <div>{addInputs(prevNumOfPlayers.current)}</div> : null;
 
   return (
     <>
@@ -64,49 +28,22 @@ const Home: NextPage = ({ games }: any) => {
           <h1>
             Welcome to <a href="https://bloodontheclocktower.com/">Blood On The Clock Tower</a> Companion!
           </h1>
-          <form>
-            {/* <input
-              type="text"
-              // defaultValue={numOfPlayers}
-              // ref={numOfPlayersInput}
-              // value={numOfPlayers}
-              // onChange={(e) =>
-              //   //@ts-ignore
-              //   setNumOfPlayers(e.target.value)
-              // }
-              // onChange={onClickNumberOfPlayers}
-            ></input> */}
-            <PlayerCountInput />
-          </form>
-          <button type="submit" value={numOfPlayers} onClick={handleClick}>
-            Add Player
-          </button>
-
-          <div>{inputs}</div>
-          {games.name}
-          <ul>
-            {games.map((game: any, index: any) => {
-              return (
-                <li key={index}>
-                  <h3>{game.name}</h3>
-                  {/* <h5>{game.classes}</h5> */}
-                </li>
-              );
-            })}
-          </ul>
         </main>
+      </div>
+      <div>
+        <h2>Select Game Type</h2>
       </div>
       <ul>
         {games.map((game: any, index: any) => {
           return (
-            <li key={index}>
+            <div onClick={gameTypeClick} key={index}>
               <h3>{game.name}</h3>
-              {/* <h5>{game.classes}</h5> */}
-            </li>
+            </div>
           );
         })}
       </ul>
-      <GameSelection />
+      {/* Map though game type eventually */}
+      {/* <GameSelection /> */}
     </>
   );
 };
