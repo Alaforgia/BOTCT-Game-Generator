@@ -1,8 +1,21 @@
 import clientPromise from "../server/mongodb";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+interface INameInput {
+  playerTag: String;
+}
 
 export default function Games({ games, classes }: any) {
+  const { register, handleSubmit } = useForm<INameInput>();
+  const onSubmit: SubmitHandler<INameInput> = (data) => console.log(data);
+
   return (
     <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>Player Name</label>
+        <input {...register("playerTag")} />
+        <input type="submit"/>
+      </form>
       <div>
         <ul>
           {games?.map((game: any, classes: any, i: any) => {
