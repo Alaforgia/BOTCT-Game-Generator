@@ -6,15 +6,24 @@ interface INameInput {
 }
 
 export default function Games({ games, classes }: any) {
-  const { register, handleSubmit } = useForm<INameInput>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<INameInput>();
   const onSubmit: SubmitHandler<INameInput> = (data) => console.log(data);
+
+  console.log(watch("playerTag"));
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Player Name</label>
-        <input {...register("playerTag")} />
-        <input type="submit"/>
+        {/* <input defaultValue="Name" {...register("playerTag")} /> */}
+        <input {...register("playerTag", { required: true, maxLength: 20 })} />
+        {errors.playerTag && <span>This field is required</span>}
+        <input type="submit" />
       </form>
       <div>
         <ul>
