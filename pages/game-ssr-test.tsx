@@ -9,7 +9,7 @@ interface INameInput {
 }
 
 export default function Games({ games, classes }: any) {
-  const [name, setName] = useState("");
+  const [playerTag, setPlayerTag] = useState("");
 
   // useEffect(() => {
   //   setName(name);
@@ -25,10 +25,9 @@ export default function Games({ games, classes }: any) {
   const onSubmit: SubmitHandler<INameInput> = (data: any, e: any) => {
     console.log(data);
     e.preventDefault();
-    setName(e.target.value);
-    console.log("name is => ", name);
+    setPlayerTag(e.target.value);
+    console.log("playerTag is => ", playerTag, data.playerTag);
   };
-
 
   return (
     <>
@@ -39,10 +38,10 @@ export default function Games({ games, classes }: any) {
         {errors.playerTag && <span>This field is required</span>}
         <input type="submit" />
 
-        <span>{name}</span>
+        {/* <span>{data.playerTag}</span> */}
       </form>
       {/* <h3>{data}</h3> */}
-      <h3>{name}</h3>
+      {/* <h3>{data.playerTag}</h3> */}
       <div>
         <ul>
           {games?.map((game: any, classes: any, i: any) => {
