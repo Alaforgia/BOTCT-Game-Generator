@@ -1,20 +1,34 @@
 import clientPromise from "../server/mongodb";
+import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface INameInput {
   playerTag: String;
+  setName: any;
+  data: any;
 }
 
 export default function Games({ games, classes }: any) {
+  const [name, setName] = useState("");
+
+  // useEffect(() => {
+  //   setName(name);
+  // }, []);
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    setValue,
   } = useForm<INameInput>();
-  const onSubmit: SubmitHandler<INameInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<INameInput> = (data: any, e: any) => {
+    console.log(data);
+    e.preventDefault();
+    setName(e.target.value);
+    console.log("name is => ", name);
+  };
 
-  console.log(watch("playerTag"));
 
   return (
     <>
@@ -24,7 +38,11 @@ export default function Games({ games, classes }: any) {
         <input {...register("playerTag", { required: true, maxLength: 20 })} />
         {errors.playerTag && <span>This field is required</span>}
         <input type="submit" />
+
+        <span>{name}</span>
       </form>
+      {/* <h3>{data}</h3> */}
+      <h3>{name}</h3>
       <div>
         <ul>
           {games?.map((game: any, classes: any, i: any) => {
