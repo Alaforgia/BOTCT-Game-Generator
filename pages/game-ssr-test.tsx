@@ -15,31 +15,36 @@ export default function Games({ games, classes }: any) {
   //   setName(name);
   // }, []);
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    setValue,
-  } = useForm<INameInput>();
-  const onSubmit: SubmitHandler<INameInput> = (data: any, e: any) => {
-    console.log(data);
-    e.preventDefault();
-    setPlayerTag(e.target.value);
-    console.log("playerTag is => ", playerTag, data.playerTag);
-  };
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   formState: { errors },
+  //   setValue,
+  // } = useForm<INameInput>();
+  // const onSubmit: SubmitHandler<INameInput> = (data: any, e: any) => {
+  //   console.log(data);
+  //   e.preventDefault();
+  //   setPlayerTag(e.target.value);
+  //   console.log("playerTag is => ", playerTag, data.playerTag);
+  // };
 
   return (
     <>
-      <form action="../pages/api/PlayerNameFormAPI" method="post" onSubmit={handleSubmit(onSubmit)}>
+      <form action="../api/PlayerNameFormAPI" method="post">
         <label htmlFor="first">Player Name</label>
-        {/* <input defaultValue="Name" {...register("playerTag")} /> */}
-        <input id="first" {...register("playerTag", { required: true, maxLength: 20 })} />
-        {errors.playerTag && <span>This field is required</span>}
-        <input type="submit" />
+        <input id="first" type="text" />
+        <button type="submit">Submit</button>
+        {/* <input type="submit" /> */}
 
         {/* <span>{data.playerTag}</span> */}
       </form>
+      {/* <form action="../pages/api/PlayerNameFormAPI" method="post" onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="first">Player Name</label>
+        <input id="first" {...register("playerTag", { required: true, maxLength: 20 })} />
+        {errors.playerTag && <span>This field is required</span>}
+        <input type="submit" />
+      </form> */}
       {/* <h3>{data}</h3> */}
       {/* <h3>{data.playerTag}</h3> */}
       <div>
