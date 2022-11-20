@@ -31,10 +31,10 @@ export default function Games({ games, classes }: any) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Player Name</label>
+      <form action="../pages/api/PlayerNameFormAPI" method="post" onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="first">Player Name</label>
         {/* <input defaultValue="Name" {...register("playerTag")} /> */}
-        <input {...register("playerTag", { required: true, maxLength: 20 })} />
+        <input id="first" {...register("playerTag", { required: true, maxLength: 20 })} />
         {errors.playerTag && <span>This field is required</span>}
         <input type="submit" />
 
