@@ -3,18 +3,18 @@ import { useState, useEffect, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface INameInput {
-  playerTag: string | null;
+  playerTag: string;
   setName: any;
   data: any;
 }
 
 export default function Games({ games, data }: any) {
-  const inputRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLDivElement | null>(null);
 
   // const [playerTag, setPlayerTag] = useState("");
 
   useEffect(() => {
-    register("playerTag", { required: true });
+    // register("playerTag", { required: true });
   }, []);
 
   const {
@@ -29,31 +29,20 @@ export default function Games({ games, data }: any) {
     console.log(data);
     // e.preventDefault();
     // setPlayerTag(e.target.value);
-    // console.log("playerTag is => ", playerTag, data.playerTag);
+    // console.log("playerTag is => ", playerTag);
+    console.log("data.playerTag is => ", data.playerTag);
   };
-  // const { ref, ...rest } = register("playerTag");
+  console.log(watch("playerTag"));
+
   return (
     <>
-      <form action="../pages/api/PlayerNameFormAPI" method="post" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="first">Player Name</label>
-        <input {...register("playerTag")} name="playerTag" onChange={(e) => setValue("playerTag", e.target.value)} />
+        <input id="first" {...register("playerTag", { required: true, maxLength: 20 })} />
         {errors.playerTag && <span>This field is required</span>}
         <input type="submit" />
-        <button
-          type="button"
-          onClick={() => {
-            const singleValue = getValues(["playerTag"]).toString();
-            <h1>{singleValue}</h1>;
-          }}
-        >
-          Submit On Click
-          {/* <h1>{singleValue}</h1> */}
-        </button>
       </form>
-      {/* id="first" {...register("playerTag", { required: true, maxLength: 20 })} */}
       <div>
-        <h1>{data}</h1>
-        {/* <h1>{playerTag}</h1> */}
         <ul>
           {games?.map((game: any, classes: any, i: any) => {
             return (
