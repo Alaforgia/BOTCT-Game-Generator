@@ -8,13 +8,13 @@ interface INameInput {
   data: any;
 }
 
-export default function Games({ games, data }: any) {
+export default function Games({ games, props }: any) {
   const inputRef = useRef<HTMLDivElement | null>(null);
 
   // const [playerTag, setPlayerTag] = useState("");
 
   useEffect(() => {
-    // register("playerTag", { required: true });
+    register("playerTag", { required: true });
   }, []);
 
   const {
