@@ -1,53 +1,59 @@
 import clientPromise from "../server/mongodb";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface INameInput {
-  playerTag: String;
+  playerTag: string | null;
   setName: any;
   data: any;
 }
 
-export default function Games({ games, classes }: any) {
-  const [playerTag, setPlayerTag] = useState("");
+export default function Games({ games, data }: any) {
+  const inputRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   setName(name);
-  // }, []);
+  // const [playerTag, setPlayerTag] = useState("");
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   watch,
-  //   formState: { errors },
-  //   setValue,
-  // } = useForm<INameInput>();
-  // const onSubmit: SubmitHandler<INameInput> = (data: any, e: any) => {
-  //   console.log(data);
-  //   e.preventDefault();
-  //   setPlayerTag(e.target.value);
-  //   console.log("playerTag is => ", playerTag, data.playerTag);
-  // };
+  useEffect(() => {
+    register("playerTag", { required: true });
+  }, []);
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    setValue,
+    getValues,
+  } = useForm<INameInput>();
+  const onSubmit: SubmitHandler<INameInput> = (data: any, e: any) => {
+    console.log(data);
+    // e.preventDefault();
+    // setPlayerTag(e.target.value);
+    // console.log("playerTag is => ", playerTag, data.playerTag);
+  };
+  // const { ref, ...rest } = register("playerTag");
   return (
     <>
-      <form action="../api/PlayerNameFormAPI" method="post">
+      <form action="../pages/api/PlayerNameFormAPI" method="post" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="first">Player Name</label>
-        <input id="first" type="text" />
-        <button type="submit">Submit</button>
-        {/* <input type="submit" /> */}
-
-        {/* <span>{data.playerTag}</span> */}
-      </form>
-      {/* <form action="../pages/api/PlayerNameFormAPI" method="post" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="first">Player Name</label>
-        <input id="first" {...register("playerTag", { required: true, maxLength: 20 })} />
+        <input {...register("playerTag")} name="playerTag" onChange={(e) => setValue("playerTag", e.target.value)} />
         {errors.playerTag && <span>This field is required</span>}
         <input type="submit" />
-      </form> */}
-      {/* <h3>{data}</h3> */}
-      {/* <h3>{data.playerTag}</h3> */}
+        <button
+          type="button"
+          onClick={() => {
+            const singleValue = getValues(["playerTag"]).toString();
+            <h1>{singleValue}</h1>;
+          }}
+        >
+          Submit On Click
+          {/* <h1>{singleValue}</h1> */}
+        </button>
+      </form>
+      {/* id="first" {...register("playerTag", { required: true, maxLength: 20 })} */}
       <div>
+        <h1>{data}</h1>
+        {/* <h1>{playerTag}</h1> */}
         <ul>
           {games?.map((game: any, classes: any, i: any) => {
             return (
