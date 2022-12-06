@@ -12,11 +12,13 @@ interface INameInput {
 }
 
 export default function Games({ games, props }: any) {
-  const inputRef = useRef<HTMLDivElement | null>(null);
+  // const inputRef = useRef<HTMLDivElement | null>(null);
 
   const playerList = [[""]];
   const [player, setPlayer] = useState(playerList);
-  const [currName, setCurrName]: any = useState("");
+  const [currName, setCurrName]: any = useState({ addPlayer: "", playerNum: 0 });
+
+  const addedPlayer = player[currName];
 
   const {
     register,
@@ -29,6 +31,12 @@ export default function Games({ games, props }: any) {
     getValues,
   } = useForm<INameInput>({ defaultValues: { playerTag: "" } });
 
+
+  // Perhaps I do not need player names? Maybe I can just have the user select which classes they want,
+  //based on how many players there are, and just build the game around that.
+  //I can maybe just use state to assign names onto the game classes that are selected for play and they persist
+  //until game over.
+
   const onSubmit: SubmitHandler<INameInput> = (data: any, e: any) => {
     // if (currName) {
     //   setCurrName(player);
@@ -36,8 +44,9 @@ export default function Games({ games, props }: any) {
     const newName = [...player];
     newName[currName] = data.playerTag;
     setPlayer(newName);
-    setCurrName(currName + 1);
+    setCurrName({ ...currName, addPlayer: currName.addPlayer, playerNum: currName.playerNum + 1 });
     // console.log(data);
+
     e.preventDefault();
     // setPlayer(e.target.value);
     // setCurrName(e.target.value);
@@ -62,16 +71,23 @@ export default function Games({ games, props }: any) {
           {...register("playerTag", {
             required: true,
             maxLength: 20,
-            // onChange: (e) => {
-            //   setPlayer(e.target.value);
-            // },
+            onChange: (e) => {
+              // setPlayer(e.target.value);
+              // setCurrName(e.target.value);
+            },
           })}
         />
         {errors.playerTag && <span>This field is required</span>}
-        <input type="submit" />
+        <input
+          type="submit"
+          onClick={() => {
+            getValues("playerTag");
+          }}
+        />
       </form>
-      {currName}
+      {currName.addPlayer}
       {player}
+      {addedPlayer}
       <div>
         <ul>
           {games?.map((game: any, classes: any, i: any) => {
