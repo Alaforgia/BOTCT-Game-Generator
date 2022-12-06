@@ -1,47 +1,77 @@
 import clientPromise from "../server/mongodb";
 import { useState, useEffect, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { AsyncLocalStorage } from "async_hooks";
 
 interface INameInput {
   playerTag: string;
-  setName: any;
+  currName: any;
+  player: any;
   data: any;
+  nameVal: any;
 }
 
 export default function Games({ games, props }: any) {
   const inputRef = useRef<HTMLDivElement | null>(null);
 
-  // const [playerTag, setPlayerTag] = useState("");
-
-  useEffect(() => {
-    register("playerTag", { required: true });
-  }, []);
+  const playerList = [[""]];
+  const [player, setPlayer] = useState(playerList);
+  const [currName, setCurrName]: any = useState("");
 
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    reset,
+    formState,
+    formState: { errors, isSubmitSuccessful },
     setValue,
     getValues,
-  } = useForm<INameInput>();
+  } = useForm<INameInput>({ defaultValues: { playerTag: "" } });
+
   const onSubmit: SubmitHandler<INameInput> = (data: any, e: any) => {
-    console.log(data);
-    // e.preventDefault();
-    // setPlayerTag(e.target.value);
-    // console.log("playerTag is => ", playerTag);
-    console.log("data.playerTag is => ", data.playerTag);
+    // if (currName) {
+    //   setCurrName(player);
+    // }
+    const newName = [...player];
+    newName[currName] = data.playerTag;
+    setPlayer(newName);
+    setCurrName(currName + 1);
+    // console.log(data);
+    e.preventDefault();
+    // setPlayer(e.target.value);
+    // setCurrName(e.target.value);
+    console.log("player is => ", player);
+    // console.log("data.playerTag is => ", data.playerTag);
+    console.log("currName is => ", currName);
   };
-  console.log(watch("playerTag"));
+
+  useEffect(() => {
+    // register("playerTag", { required: true });
+    if (formState.isSubmitSuccessful) {
+      reset({ playerTag: "" });
+    }
+  }, [formState, reset]);
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="first">Player Name</label>
-        <input id="first" {...register("playerTag", { required: true, maxLength: 20 })} />
+        <input
+          id="first"
+          {...register("playerTag", {
+            required: true,
+            maxLength: 20,
+            // onChange: (e) => {
+            //   setPlayer(e.target.value);
+            // },
+          })}
+        />
         {errors.playerTag && <span>This field is required</span>}
         <input type="submit" />
       </form>
+      {currName}
+      {player}
       <div>
         <ul>
           {games?.map((game: any, classes: any, i: any) => {
