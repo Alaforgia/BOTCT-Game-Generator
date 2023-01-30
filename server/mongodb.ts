@@ -6,7 +6,7 @@ import { MongoClient } from "mongodb";
 // }
 
 const uri =
-  "mongodb+srv://tlaforgia:I1IEUCVmR1gPcfzJ@botct-cluster.ay4qfp7.mongodb.net/game_data?retryWrites=true&w=majority";
+  "mongodb+srv://tlaforgia:Botctnewkey3481@botct-cluster.ay4qfp7.mongodb.net/game_data?retryWrites=true&w=majority";
 const options = {};
 
 let client;
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "development") {
   // is preserved across module reloads caused by HMR (Hot Module Replacement).
   if (!global._mongoClientPromise) {
     client = new MongoClient(
-      "mongodb+srv://tlaforgia:I1IEUCVmR1gPcfzJ@botct-cluster.ay4qfp7.mongodb.net/game_data?retryWrites=true&w=majority",
+      "mongodb+srv://tlaforgia:Botctnewkey3481@botct-cluster.ay4qfp7.mongodb.net/game_data?retryWrites=true&w=majority",
       options
     );
     global._mongoClientPromise = client.connect();
@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "development") {
 } else {
   // In production mode, it's best to not use a global variable.
   client = new MongoClient(
-    "mongodb+srv://tlaforgia:I1IEUCVmR1gPcfzJ@botct-cluster.ay4qfp7.mongodb.net/game_data?retryWrites=true&w=majority",
+    "mongodb+srv://tlaforgia:Botctnewkey3481@botct-cluster.ay4qfp7.mongodb.net/game_data?retryWrites=true&w=majority",
     options
   );
   clientPromise = client.connect();

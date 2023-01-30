@@ -39,7 +39,7 @@ app.prepare().then(() => {
 
   async function start() {
     const client = new MongoClient(
-      "mongodb+srv://tlaforgia:I1IEUCVmR1gPcfzJ@botct-cluster.ay4qfp7.mongodb.net/game_data?retryWrites=true&w=majority"
+      "mongodb+srv://tlaforgia:Botctnewkey3481@botct-cluster.ay4qfp7.mongodb.net/game_data?retryWrites=true&w=majority"
     );
     await client.connect();
     db = client.db();
