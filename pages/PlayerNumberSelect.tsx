@@ -8,7 +8,6 @@ import TroubleBrewingClasses from "./ClassSelection/TroubleBrewingClasses";
 interface IPlayerCount {
   maxNum: number;
   numOfPlayers: number[];
-
 }
 //
 let maxNum: number;
@@ -16,12 +15,12 @@ let numOfPlayers: number[] = [];
 //
 function PlayerNumberSelect({ games, numData }: any) {
   const router = useRouter();
-  const [output, setOutput] = useState("");
+  const [output, setOutput] = useState<String>("");
   //
+  // if (maxNum > 0 && Number.isFinite(Number(maxNum))) {
+  //   maxNum = Math.round(Number(maxNum));
+  // }
 
-  if (maxNum > 0 && Number.isFinite(Number(maxNum))) {
-    maxNum = Math.round(Number(maxNum));
-  }
   const {
     register,
     handleSubmit,
@@ -33,15 +32,15 @@ function PlayerNumberSelect({ games, numData }: any) {
     games.map((game: any) => {
       if (game.name === "Trouble Brewing") {
         maxNum = data.maxNum;
-        if (maxNum && !isNaN(maxNum) && maxNum >= 5 && maxNum < 21) {
+        if (maxNum && !isNaN(maxNum) && Number.isInteger(maxNum) && maxNum >= 5 && maxNum < 21) {
           if (!numOfPlayers.includes(maxNum)) {
             numOfPlayers.push(maxNum);
             router.push("/ClassSelection/TroubleBrewingClasses");
           }
-        } else if (maxNum < 5 || isNaN(maxNum)) {
+        } else if (maxNum < 5 || isNaN(maxNum) || !Number.isInteger(maxNum)) {
           setOutput("Please enter a number between 5 and 20");
         }
-        console.log(data, output);
+        console.log(data);
       }
     });
   };
