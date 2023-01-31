@@ -5,6 +5,12 @@ import { useState } from "react";
 import styled, { css } from "styled-components";
 import TroubleBrewingClasses from "./ClassSelection/TroubleBrewingClasses";
 
+// Monday January 30th 8:51 PM
+// Figure out what to do to persist the maxNum data to another component. I should create a new component that takes in the player count
+// and then preselects the "Imp" and one of the minions. The Imp cannot be unselected, and neither can the Minion classes, but at least one
+// Minion must be selected. I should decide if I should set conditions based on player count, if 5 (minimum players) is selected, there
+// shouldn't be more than one Minion, but that can left to the players perhaps, at least for now.
+
 interface IPlayerCount {
   maxNum: number;
   numOfPlayers: number[];
