@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useState, useContext, createContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
-import NumberRandomizer from "./NumberRandomizer";
 import GameSelection from "../src/components/GameSelection";
 import clientPromise from "../server/mongodb";
 
@@ -12,7 +11,7 @@ const Home: NextPage = ({ games }: any) => {
   const router = useRouter();
 
   const gameTypeClick = () => {
-    router.push("/ClassSelection/TroubleBrewingClasses");
+    router.push("/PlayerNumberSelect");
   };
 
   return (
