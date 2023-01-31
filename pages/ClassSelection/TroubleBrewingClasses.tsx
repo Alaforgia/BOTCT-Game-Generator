@@ -1,5 +1,6 @@
 import React from "react";
 import clientPromise from "../../server/mongodb";
+import PlayerNumberSelect from '../PlayerNumberSelect';
 
 export default function TroubleBrewingClasses({games}: any) {
   return (
@@ -30,6 +31,7 @@ export default function TroubleBrewingClasses({games}: any) {
           );
         })}
       </ul>
+      <PlayerNumberSelect games={games}/>
     </>
   );
 }
