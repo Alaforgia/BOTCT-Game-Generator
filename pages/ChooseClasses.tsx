@@ -1,7 +1,11 @@
 import clientPromise from ".././server/mongodb";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import PlayerNumberSelect from "./PlayerNumberSelect";
 
 function ChooseClasses({ games }: any) {
+  const router = useRouter();
+  const { maxNum } = router.query;
   const [selectedClasses, setSelectedClasses] = useState<string[]>(["Imp"]);
   const [impSelected, setImpSelected] = useState(false);
   const [minionSelected, setMinionSelected] = useState(false);
@@ -50,6 +54,7 @@ function ChooseClasses({ games }: any) {
       setMinionSelected(isChecked);
     }
   };
+  console.log("maxNum =", maxNum);
 
   return (
     <form onSubmit={handleSubmit}>

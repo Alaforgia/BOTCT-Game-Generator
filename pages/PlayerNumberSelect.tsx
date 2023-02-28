@@ -41,7 +41,7 @@ function PlayerNumberSelect({ games, numData }: any) {
         if (maxNum && !isNaN(maxNum) && Number.isInteger(maxNum) && maxNum >= 5 && maxNum < 21) {
           if (!numOfPlayers.includes(maxNum)) {
             numOfPlayers.push(maxNum);
-            router.push("/ClassSelection/TroubleBrewingClasses");
+            router.push(`/ChooseClasses?maxNum=${maxNum}`);
           }
         } else if (maxNum < 5 || isNaN(maxNum) || !Number.isInteger(maxNum)) {
           setOutput("Please enter a number between 5 and 20");
