@@ -65,7 +65,7 @@ export default function PlayerNumberSelect({ games }: any) {
   );
 }
 
-// You have to try to create a useRef or use a state manager to access the maxNum.
+// You have to try to create a useRef, a useContext, or use a state manager to access the maxNum.
 export async function getServerSideProps() {
   try {
     const client = await clientPromise;

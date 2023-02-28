@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useContext, createContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import NumberRandomizer from "../../pages/NumberRandomizer";
+// import NumberRandomizer from "../../pages/NumberRandomizer";
 
 //@ts-ignore
 export const PlayerContext: any = createContext();
