@@ -99,14 +99,14 @@ export default function Games({ games, props }: any) {
                     return (
                       <>
                         <h2>{game_class[0]}</h2>
-                        {game_class[1].map((sub_class: any) => {
+                       {game_class[1].map((sub_class: any) => {
                           return (
                             <>
                               <h4>{sub_class?.class_ability}</h4>
                               <h4>{sub_class?.class_name}</h4>
                             </>
                           );
-                        })}
+                        })} 
                       </>
                     );
                   })}

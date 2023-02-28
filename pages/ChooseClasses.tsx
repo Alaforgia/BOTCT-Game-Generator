@@ -7,7 +7,7 @@ function ChooseClasses({ games }: any) {
 
   useEffect(() => {
     setImpChecked(true); // update Imp checkbox state whenever component renders
-    setImpChecked(true);
+    setMinionChecked(true);
   }, []);
   return (
     <>
@@ -26,13 +26,13 @@ function ChooseClasses({ games }: any) {
                           <form>
                             <input
                               type="checkbox"
-                              checked={sub_class.class_name === "Imp" ? impChecked : false}
+                              // checked={sub_class.class_name === "Imp" ? impChecked : false}
                               onChange={() => {
                                 if (sub_class.class_name === "Imp") {
                                   setImpChecked(!impChecked);
                                 }
                               }}
-                              disabled={sub_class.class_name === "Imp"}
+                              disabled={sub_class.class_name === "Imp" && impChecked}
                             />
                             {sub_class?.class_name}
                             <label>{sub_class?.class_ability}</label>
