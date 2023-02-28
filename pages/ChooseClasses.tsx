@@ -2,6 +2,13 @@ import clientPromise from ".././server/mongodb";
 import { useState, useEffect } from "react";
 
 function ChooseClasses({ games }: any) {
+  const [impChecked, setImpChecked] = useState(true); // initialize Imp checkbox to be checked
+  const [minionChecked, setMinionChecked] = useState(true);
+
+  useEffect(() => {
+    setImpChecked(true); // update Imp checkbox state whenever component renders
+    setImpChecked(true);
+  }, []);
   return (
     <>
       {games?.map((game: any, classes: any, i: any) => {
@@ -17,7 +24,16 @@ function ChooseClasses({ games }: any) {
                       return (
                         <>
                           <form>
-                            <input type="checkbox" />
+                            <input
+                              type="checkbox"
+                              checked={sub_class.class_name === "Imp" ? impChecked : false}
+                              onChange={() => {
+                                if (sub_class.class_name === "Imp") {
+                                  setImpChecked(!impChecked);
+                                }
+                              }}
+                              disabled={sub_class.class_name === "Imp"}
+                            />
                             {sub_class?.class_name}
                             <label>{sub_class?.class_ability}</label>
                           </form>
