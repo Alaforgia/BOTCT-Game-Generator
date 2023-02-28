@@ -54,7 +54,7 @@ function ChooseClasses({ games }: any, { maxNum }: { maxNum: number }) {
       setMinionSelected(isChecked);
     }
   };
-  console.log("maxNum =", maxNum, playerCount);
+  console.log("maxNum =", maxNum);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -88,6 +88,8 @@ function ChooseClasses({ games }: any, { maxNum }: { maxNum: number }) {
           </div>
         );
       })}
+
+      {maxNum}
       {showMinionError && <h1>You must select at least one Minion class</h1>}
       <button type="submit" disabled={!impSelected || !minionSelected}>
         Submit

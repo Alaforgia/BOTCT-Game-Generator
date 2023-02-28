@@ -7,44 +7,38 @@ import TroubleBrewingClasses from "./ClassSelection/TroubleBrewingClasses";
 import Link from "next/link";
 import ChooseClasses from "./ChooseClasses";
 
-// Monday January 30th 8:51 PM
-// Figure out what to do to persist the maxNum data to another component. I should create a new component that takes in the player count
-// and then preselects the "Imp" and one of the minions. The Imp cannot be unselected, and neither can the Minion classes, but at least one
-// Minion must be selected. I should decide if I should set conditions based on player count, if 5 (minimum players) is selected, there
-// shouldn't be more than one Minion, but that can left to the players perhaps, at least for now.
-
 interface IPlayerCount {
   maxNum: any;
   numOfPlayers: number[];
+  data: any;
 }
 //
-let maxNum: number;
+// let maxNum: number;
 let numOfPlayers: number[] = [];
 //
 export default function PlayerNumberSelect({ games }: any) {
+  const [output, setOutput] = useState("");
+  const [maxNum, setMaxNum] = useState(0);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IPlayerCount>();
   const router = useRouter();
-  const [output, setOutput] = useState("");
 
-  const onSubmit: SubmitHandler<IPlayerCount> = (data) => {
-    games.map((game: any) => {
-      if (game.name === "Trouble Brewing") {
-        const maxNum = parseInt(data.maxNum, 10);
-        if (maxNum && !isNaN(maxNum) && maxNum >= 5 && maxNum < 21) {
-          router.push({
-            pathname: "/ChooseClasses",
-            query: { maxNum: maxNum },
-          });
-          // <Link href={{ pathname: "/ChooseClasses", query: { maxNum: "maxNum" } }} />;
-        } else {
-          setOutput("Please enter a number between 5 and 20");
-        }
-      }
-    });
+  const onSubmit: SubmitHandler<IPlayerCount> = (data: any) => {
+    if (data.maxNum && !isNaN(data.maxNum) && data.maxNum > 4 && data.maxNum < 21) {
+      setMaxNum(data.maxNum);
+      setOutput("In Range");
+      // router.push("/ChooseClasses");
+      // router.push({
+      //   pathname: "/ChooseClasses",
+      //   query: { maxNum: data },
+      // });
+      // <Link href={{ pathname: "/ChooseClasses", query: { maxNum: "maxNum" } }} />;
+    }
+    console.log("maxNum: ", maxNum);
+    console.log("data: ", data.maxNum);
   };
 
   return (
@@ -64,11 +58,14 @@ export default function PlayerNumberSelect({ games }: any) {
         {errors.maxNum?.type === "max" && <p role="alert">Number must be at most 20</p>}
         <input type="submit" />
       </form>
-      <h3>{output}</h3>
+      <h2>{output}</h2>
+      <h2>{maxNum}</h2>
+      {/* <ChooseClasses games={games} maxNum={maxNum} /> */}
     </>
   );
 }
 
+// You have to try to create a useRef or use a state manager to access the maxNum.
 export async function getServerSideProps() {
   try {
     const client = await clientPromise;
