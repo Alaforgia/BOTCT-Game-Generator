@@ -4,6 +4,8 @@ import { Router, useRouter } from "next/router";
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import TroubleBrewingClasses from "./ClassSelection/TroubleBrewingClasses";
+import Link from "next/link";
+import ChooseClasses from "./ChooseClasses";
 
 // Monday January 30th 8:51 PM
 // Figure out what to do to persist the maxNum data to another component. I should create a new component that takes in the player count
@@ -12,61 +14,60 @@ import TroubleBrewingClasses from "./ClassSelection/TroubleBrewingClasses";
 // shouldn't be more than one Minion, but that can left to the players perhaps, at least for now.
 
 interface IPlayerCount {
-  maxNum: number;
+  maxNum: any;
   numOfPlayers: number[];
 }
 //
 let maxNum: number;
 let numOfPlayers: number[] = [];
 //
-function PlayerNumberSelect({ games, numData }: any) {
-  const router = useRouter();
-  const [output, setOutput] = useState<String>("");
-  //
-  // if (maxNum > 0 && Number.isFinite(Number(maxNum))) {
-  //   maxNum = Math.round(Number(maxNum));
-  // }
-
+export default function PlayerNumberSelect({ games }: any) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<IPlayerCount>();
+  const router = useRouter();
+  const [output, setOutput] = useState("");
 
   const onSubmit: SubmitHandler<IPlayerCount> = (data) => {
     games.map((game: any) => {
       if (game.name === "Trouble Brewing") {
-        maxNum = data.maxNum;
-        if (maxNum && !isNaN(maxNum) && Number.isInteger(maxNum) && maxNum >= 5 && maxNum < 21) {
-          if (!numOfPlayers.includes(maxNum)) {
-            numOfPlayers.push(maxNum);
-            router.push(`/ChooseClasses?maxNum=${maxNum}`);
-          }
-        } else if (maxNum < 5 || isNaN(maxNum) || !Number.isInteger(maxNum)) {
+        const maxNum = parseInt(data.maxNum, 10);
+        if (maxNum && !isNaN(maxNum) && maxNum >= 5 && maxNum < 21) {
+          router.push({
+            pathname: "/ChooseClasses",
+            query: { maxNum: maxNum },
+          });
+          // <Link href={{ pathname: "/ChooseClasses", query: { maxNum: "maxNum" } }} />;
+        } else {
           setOutput("Please enter a number between 5 and 20");
         }
-        console.log(data);
       }
     });
   };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          defaultValue=""
-          {...register("maxNum", { required: true })}
+          {...register("maxNum", {
+            required: true,
+            min: 5,
+            max: 20,
+            valueAsNumber: true,
+          })}
           aria-invalid={errors.maxNum ? "true" : "false"}
         />
-        {errors.maxNum?.type === "required" && <p role="alert"> Number required</p>}
+        {errors.maxNum?.type === "required" && <p role="alert">Number required</p>}
+        {errors.maxNum?.type === "min" && <p role="alert">Number must be at least 5</p>}
+        {errors.maxNum?.type === "max" && <p role="alert">Number must be at most 20</p>}
         <input type="submit" />
       </form>
       <h3>{output}</h3>
     </>
   );
 }
-
-export default PlayerNumberSelect;
 
 export async function getServerSideProps() {
   try {
